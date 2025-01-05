@@ -15,10 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from polls import views  # Replace 'your_app_name' with the actual name of your app
+from django.urls import path,include
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-   path('start_page',views.startpage,name= 'startpage'),
+    path('',include("polls.urls"))
 ]
