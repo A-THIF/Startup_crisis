@@ -5,218 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Startup Crisis Management</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'startpage.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: url('{% static "WhatsApp Image 2025-01-02 at 02.35.24_ce157396.jpg" %}') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            font-family: 'Pixelify Sans', sans-serif; /* Ensure the font is applied to the body */
-        }
-
-        .top-bar {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            height: 100px;
-            background-color: rgba(0, 0, 0, 0.3); /* Use RGBA for background transparency */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .top-bar h1 {
-            color: white; /* Ensures the text is white */
-            opacity: 1; /* Explicitly set opacity to 1 to override any inherited opacity */
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 100vh;
-            position: relative;
-        }
-
-        .menu {
-            position: absolute;
-            top: 30px;
-            right: 20px;
-        }
-
-        .menu__item--hamburger {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .line {
-            height: 8px;
-            width: 45px;
-            background: #fff;
-            margin: 5px 0;
-            transition: all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .menu__item--hamburger:hover .line:nth-child(1) {
-            transform: rotate(45deg) translate(12px, 12px);
-        }
-
-        .menu__item--hamburger:hover .line:nth-child(2) {
-            visibility: hidden;
-        }
-
-        .menu__item--hamburger:hover .line:nth-child(3) {
-            transform: rotate(-45deg) translate(15px, -16px);
-        }
-
-        .play-button {
-            position: absolute;
-            top: 80%;
-            left: 48%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(157, 40, 24, 1);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1em;
-            text-transform: uppercase;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.1s;
-        }
-
-        .play-button:hover {
-            background-color: rgba(120, 30, 20, 1);
-        }
-
-        .play-button:active {
-            transform: translate(-50%, -50%) scale(0.95);
-        }
-
-        .new-page {
-            display: none;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                        url('{% static "new_back.png" %}') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .new-page .contact-icon {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-        }
-
-        .new-page .content {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 100%;
-        }
-
-        .new-page .text {
-            flex: 1;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            text-align: left;
-            padding-left: 50px;
-        }
-
-        .new-page .buttons {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 50px;
-            justify-content: center;
-            align-items: flex-end;
-            padding-right: 50px;
-        }
-
-        .new-page button {
-            background-color: #d9534f;
-            color: white;
-            border: none;
-            padding: 20px 40px;
-            font-size: 1.5em;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .new-page button:hover {
-            background-color: #c9302c;
-        }
-
-        .new-page button:active {
-            transform: scale(0.95);
-        }
-    </style>
-    <script>
-        function navigateToGame() {
-            document.querySelector('.container').style.display = 'none';
-            document.querySelector('.new-page').style.display = 'flex';
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Stick&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="top-bar">
-        <h1 style="font-family: 'Pixelify Sans', sans-serif;">Startup</h1>
-        <h1 style="font-family: 'Pixelify Sans', sans-serif;">Crisis Management</h1>
-    </div>
-    <div class="container">
-        <div class="menu">
-            <div class="menu__item--hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
+    <header class="header">
+        <div class="top-bar">
+            <h1 style="font-family: 'Pixelify Sans', sans-serif; font-weight: 500;">Startup Crisis</h1>
+            <h1 style="font-family: 'Pixelify Sans', sans-serif; font-weight: 500;"> Management</h1>
         </div>
+        <div class="menu">
+            <input type="checkbox" id="burger-toggle">
+            <label for="burger-toggle" class="burger-container">
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+            </label>
+        </div>
+    </header>
+    <main class="container page-transition">
         <div class="quote">
-            <p style="font-family: 'Pixelify Sans', sans-serif;">In the heart of the crisis, only your decisions matter.</p>
-            <p style="font-family: 'Pixelify Sans', sans-serif;">The future is unwritten.</p>
+            <p>In the heart of the crisis, only your decisions matter.</p>
+            <p>The future is unwritten.</p>
         </div>
         <button class="play-button" onclick="navigateToGame()">Play now</button>
-    </div>
-    <div class="new-page" style="display: none;">
-        <img src="{% static 'contact.png' %}" alt="Contact Icon" class="contact-icon">
+    </main>
+    <section class="new-page" style="display: none;" aria-label="Login section">
         <div class="content">
             <div class="text">
-                <h1 style="font-family: 'Pixelify Sans', sans-serif;">Get Out and Stretch Your Imagination</h1>
+                <h1>Get Out and Stretch Your Imagination</h1>
             </div>
             <div class="buttons">
-                <button onclick="alert('Sign In clicked')">Sign In</button>
-                <button onclick="alert('Login clicked')">Login</button>
+                <button onclick="handleSignIn()">Sign In</button>
+                <button onclick="handleLogin()">Login</button>
             </div>
         </div>
-    </div>
+    </section>    
+    <div class="overlay"></div>
+    <nav class="side-menu">
+        <ul>
+            <li style="--i: 1;"><a href="#">HOME</a></li>
+            <li style="--i: 2;"><a href="#">ABOUT</a></li>
+            <li style="--i: 3;"><a href="#">SERVICES</a></li>
+            <li style="--i: 4;"><a href="#">CONTACT</a></li>
+            <li style="--i: 5;"><a href="#">SETTINGS</a></li>
+        </ul>
+    </nav>
+    <script src="{% static 'startpage.js' %}"></script>
 </body>
 </html>
