@@ -48,3 +48,10 @@ document.addEventListener("DOMContentLoaded", function() {
   document.querySelector('button[onclick="handleSignIn()"]').addEventListener('click', handleSignIn);
   document.querySelector('button[onclick="handleLogin()"]').addEventListener('click', handleLogin);
 });
+
+function toggleMenu() {
+    const header = document.querySelector('.header');
+    const sideMenu = document.querySelector('.side-menu');
+    header.classList.toggle('expanded');
+    sideMenu.classList.toggle('expanded');
+}
