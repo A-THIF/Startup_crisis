@@ -1,0 +1,121 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Type Selector</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/selection.css' %}">
+</head>
+<body>
+    <video class="video-background" autoplay muted loop>
+        <source src="{% static 'videos/background2.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Main Selection Page -->
+    <div id="mainPage" class="container">
+        <h1>Choose the business type</h1>
+        <div class="business-grid">
+            <div class="business-card" onclick="selectBusiness('technology')">
+                <div class="business-card-content">
+                    <span>⚙️</span>
+                    <span>TECHNOLOGY</span>
+                </div>
+            </div>
+            <div class="business-card" onclick="selectBusiness('ecommerce')">
+                <div class="business-card-content">
+                    <span>🛒</span>
+                    <span>E-COMMERCE</span>
+                </div>
+            </div>
+            <div class="business-card" onclick="selectBusiness('food')">
+                <div class="business-card-content">
+                    <span>☕</span>
+                    <span>FOOD & BEVERAGE</span>
+                </div>
+            </div>
+            <div class="business-card" onclick="selectBusiness('health')">
+                <div class="business-card-content">
+                    <span>❤️</span>
+                    <span>HEALTH & WELLNESS</span>
+                </div>
+            </div>
+            <div class="business-card" onclick="selectBusiness('entertainment')">
+                <div class="business-card-content">
+                    <span>🎵</span>
+                    <span>ENTERTAINMENT</span>
+                </div>
+            </div>
+        </div>
+        <div class="input-section">
+            <input type="text" id="companyName" placeholder="Enter the name for your company" onkeyup="validateInput()">
+            <button id="startButton" onclick="startGame()" disabled>Start</button>
+        </div>
+    </div>
+
+    <!-- Technology Page -->
+    <div id="technologyPage" class="page-container">
+        <h1>GROUNDBREAKING SERVICE IDEAS:</h1>
+        <div class="options-container">
+            <button class="option-button">MOBILE GAME</button>
+            <button class="option-button">CONTENT PLATFORM</button>
+            <button class="option-button">STREAMING</button>
+            <button class="option-button">EVENT</button>
+            <button class="continue-button">CONTINUE</button>
+        </div>
+    </div>
+
+    <!-- E-commerce Page -->
+    <div id="ecommercePage" class="page-container">
+        <h1>GROUNDBREAKING SERVICE IDEAS:</h1>
+        <div class="options-container">
+            <button class="option-button">FASHION</button>
+            <button class="option-button">ELECTRONICS</button>
+            <button class="option-button">HANDMADE</button>
+            <button class="option-button">DROPSHIPPING</button>
+            <button class="continue-button">CONTINUE</button>
+        </div>
+    </div>
+
+    <!-- Food Page -->
+    <div id="foodPage" class="page-container">
+        <h1>GROUNDBREAKING SERVICE IDEAS:</h1>
+        <div class="options-container">
+            <button class="option-button">DELIVERY</button>
+            <button class="option-button">CAFE</button>
+            <button class="option-button">FOOD TRUCK</button>
+            <button class="option-button">BEVERAGE</button>
+            <button class="continue-button">CONTINUE</button>
+        </div>
+    </div>
+
+    <!-- Health Page -->
+    <div id="healthPage" class="page-container">
+        <h1>GROUNDBREAKING SERVICE IDEAS:</h1>
+        <div class="options-container">
+            <button class="option-button">FITNESS APP</button>
+            <button class="option-button">COACHING</button>
+            <button class="option-button">SUPPLEMENTS</button>
+            <button class="option-button">CLASSES</button>
+            <button class="continue-button">CONTINUE</button>
+        </div>
+    </div>
+
+    <!-- Entertainment Page -->
+    <div id="entertainmentPage" class="page-container">
+        <h1>GROUNDBREAKING SERVICE IDEAS:</h1>
+        <div class="options-container">
+            <button class="option-button">MOBILE GAME</button>
+            <button class="option-button">CONTENT PLATFORM</button>
+            <button class="option-button">STREAMING</button>
+            <button class="option-button">EVENT</button>
+            <button class="continue-button">CONTINUE</button>
+        </div>
+    </div>
+
+    <script src="{% static 'js/selection.js' %}"></script>
+</body>
+</html>
