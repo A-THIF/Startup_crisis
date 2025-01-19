@@ -57,5 +57,7 @@ function checkForm() {
     // Enable the button only if both fields are filled
     loginButton.disabled = !(email && password);
 }
-
-// ... existing code ...
+// Toggle the switch state
+function toggleSwitch(element) {
+    element.classList.toggle('on');
+}

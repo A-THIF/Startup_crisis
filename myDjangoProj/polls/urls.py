@@ -5,4 +5,7 @@ urlpatterns = [
     path('',views.startpage,name= 'startpage'),
     path('contact/', views.contact_view, name='contact'),
     path('selection/', views.selection, name='selection'), 
+    path('about/', views.about, name='about'),
+    path('contact/',views.contact,name='contact'),
+    path('settings/', views.settings, name='settings'),
 ]

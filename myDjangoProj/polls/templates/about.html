@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Startup Crisis Management</title>
+    <title>About Page</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Stick&display=swap" rel="stylesheet">
 </head>
@@ -41,15 +41,15 @@
     </nav>
 
     <main class="container page-transition">
-        <form>
-            <input type="text" placeholder="Name (required)" required>
-            <input type="text" placeholder="Return address (required)" required>
-            <input type="text" placeholder="Topic (required)" required>
-            <textarea placeholder="Subject (required)" required></textarea>
-            <input type="submit" value="Send">
-        </form>
+        <h1>ABOUT US</h1>
+        <h3 class="underline">Team Members:</h3>
+        <ul>
+            <li><a href="https://www.linkedin.com/in/varsha-mt-a1a387341/" target="_blank">Varsha M T</a></li>
+            <li><a href="https://www.linkedin.com/in/ghulshath" target="_blank">Ghulshath</a></li>
+            <li><a href="https://www.linkedin.com/in/hari-hara-sudhan-b" target="_blank">Hari Hara Sudhan B</a></li>
+            <li><a href="https://www.linkedin.com/in/n-mohamed-athif-473096297/" target="_blank">Mohamed Athif N</a></li>
+        </ul>
     </main>
-    
 
     <div class="overlay"></div>
     <script src="{% static 'js/startpage.js' %}"></script>

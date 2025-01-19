@@ -36,11 +36,6 @@ body::before {
     z-index: 1;
 }
 
-/* Duplicate body style commented out */
-/* body {
-    filter: brightness(1.1) contrast(1.1);
-} */
-
 .header {
     position: fixed;
     top: 0;
@@ -126,6 +121,7 @@ body::before {
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
+    margin: 50px;
 }
 
 .burger-line {
@@ -159,130 +155,6 @@ body::before {
 
 #burger-toggle:checked ~ .burger-container .burger-line:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
-}
-
-.play-button {
-    position: absolute;
-    top: 80%;
-    left: 48%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(157, 40, 24, 1);
-    color: white;
-    border: none;
-    font-size: 1.5em;
-    text-transform: uppercase;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
-    font-family: 'Stick', sans-serif;
-    letter-spacing: 2px;
-    width: 311.7px;
-    height: 68px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.play-button:hover {
-    background-color: rgba(120, 30, 20, 1);
-}
-
-.play-button:active {
-    transform: translate(-50%, -50%) scale(0.95);
-}
-
-.new-page {
-    /* background: linear-gradient(
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5)
-    );*/
-    height: 100vh;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-}
-
-.new-page .content {
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 50px;
-}
-
-.new-page .text {
-    flex: 1;
-    text-align: left;
-}
-
-.new-page .buttons {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    align-items: flex-end;
-}
-
-.new-page button {
-    background-color: rgba(157, 40, 24, 1);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.5em;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
-    font-family: 'Stick', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    width: 311.7px;
-    height: 68px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.new-page button:hover {
-    background-color: rgba(120, 30, 20, 1);
-}
-
-.new-page button:active {
-    transform: scale(0.95);
-}
-
-.quote {
-    margin-top: 50px;
-    padding: 20px;
-}
-
-.quote p {
-    font-size: 1.8em;
-    margin: 20px 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    line-height: 1.4;
-}
-
-.page-transition {
-    transition: opacity 0.3s ease-in-out;
-}
-
-.fade-out {
-    opacity: 0;
-}
-
-.fade-in {
-    opacity: 1;
-}
-
-.new-page .text h1 {
-    font-size: 3em;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .overlay {
@@ -349,7 +221,7 @@ body::before {
 .side-menu ul li a {
     color: white;
     text-decoration: none;
-    font-size: 2em;
+    font-size: 1.2em;
     transition: color 0.3s;
     font-family: 'Stick', sans-serif;
     letter-spacing: 1px;
@@ -359,119 +231,6 @@ body::before {
     color: rgba(157, 40, 24, 1);
 }
 
-@media (max-width: 768px) {
-    .side-menu {
-        width: 80%;
-    }
-    .header h1 {
-        font-size: 1.2em;
-    }
-    .play-button {
-        font-size: 1em;
-        width: 250px;
-        height: 50px;
-    }
-}
-
-#burger-toggle:checked ~ .side-menu {
-    right: 0;
-    visibility: visible;
-    opacity: 1;
-}
-
-#burger-toggle:checked ~ .overlay {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-.menu {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-    margin-top: 10px;
-}
-.main{
-	width: 350px;
-	height: 500px;
-	background: red;
-	overflow: hidden;
-	background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover;
-	border-radius: 10px;
-	box-shadow: 5px 20px 50px #000;
-	margin-top: 160px;
-}
-#chk{
-	display: none;
-}
-.signup{
-	position: relative;
-	width:100%;
-	height: 100%;
-}
-label{
-	color: #fff;
-	font-size: 2.3em;
-	justify-content: center;
-	display: flex;
-	margin: 50px;
-	font-weight: bold;
-	cursor: pointer;
-	transition: .5s ease-in-out;
-}
-input{
-	width: 60%;
-	height: 10px;
-	background: #e0dede;
-	justify-content: center;
-	display: flex;
-	margin: 20px auto;
-	padding: 12px;
-	border: none;
-	outline: none;
-	border-radius: 5px;
-}
-button{
-	width: 60%;
-	height: 40px;
-	margin: 10px auto;
-	justify-content: center;
-	display: block;
-	color: #fff;
-	background: #573b8a;
-	font-size: 1em;
-	font-weight: bold;
-	margin-top: 0px;
-	outline: none;
-	border: none;
-	border-radius: 5px;
-	transition: .2s ease-in;
-	cursor: pointer;
-}
-button:hover{
-	background: #6d44b8;
-}
-.login{
-	height: 460px;
-	background: #eee;
-	border-radius: 60% / 10%;
-	transform: translateY(-180px);
-	transition: .8s ease-in-out;
-}
-.login label{
-	color: #573b8a;
-	transform: scale(.6);
-}
-
-#chk:checked ~ .login{
-	transform: translateY(-500px);
-}
-#chk:checked ~ .login label{
-	transform: scale(1);	
-}
-#chk:checked ~ .signup label{
-	transform: scale(.6);
-}
 
 #background-video {
     position: fixed;
@@ -491,4 +250,36 @@ a.button-link {
 a.button-link:hover {
     color: lightgray;
 }
+h3 {
+    font-size: 2em; /* Adjust as needed */
+    margin-bottom: 20px;
+}
+.underline {
+    margin-top: 20px; 
+    border-bottom: 2px solid rgb(255, 255, 255); /* Adjust the thickness and color of the underscore */
+    display: inline-block; /* Ensure the border is only applied to the text */
+    padding-bottom: 5px; /* Optional: Adjust spacing between the text and the underline */
+}
 
+ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+ul li {
+    font-size: 1.5em; /* Adjust as needed */
+    margin-bottom: 10px; /* Space between list items */
+    font-family: 'Stick';
+}
+h1 {
+    margin-top: 50px;
+    margin-bottom: 20px;  /* Adjust this value to control the gap below the <h1> */
+}
+ul li a {
+    color: white; /* Set link color to white */
+    text-decoration: none; /* Remove underline from links */
+}
+
+ul li a:hover {
+    text-decoration: underline; /* Optional: underline on hover */
+}
