@@ -1,0 +1,468 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#background-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2;
+    object-fit: cover;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(74, 29, 150, 0.8), rgba(30, 58, 138, 0.8));
+    z-index: -1;
+}
+
+/* Update the header styles */
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 2rem;  /* Changed from 40% to 2rem to move it to top */
+    transform: none;  /* Remove the translateY since we want it at the top */
+}
+
+.title {
+    color: white;
+    font-size: 2rem;
+    font-weight: 300;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.level-container {
+    font-size: 1.5rem;
+    color: #60a5fa;
+}
+
+.controls {
+    position: relative;
+    clear: both;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 2rem;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    max-width: 700px;
+    margin-left: 18rem;
+    position: absolute;
+    top: 25rem;
+}
+
+.option-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 1rem 13rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Segoe UI', sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+}
+
+.option-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.building-section {
+    position: absolute;
+    left: 1rem;
+    top: 9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 180px;
+}
+
+.action-btn {
+    background: #f97316;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2);
+}
+
+.action-btn:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+}
+
+.sell-button-container {
+    position: absolute;
+    right: 3rem;
+    top: 9.5rem;
+    width: 180px;
+}
+
+.sell-btn {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 180px;
+    font-family: 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+}
+
+.sell-btn:hover {
+    background: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+}
+
+.reload-container {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.reload-btn {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.reload-btn:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* ... Rest of the CSS ... */
+
+.fund-display {
+    background: rgba(6, 223, 24, 0.87);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    color: #e6f0ea;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.fund-display span:first-child {
+    color: white;
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.equity-display {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    color: #60a5fa;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.equity-display span:first-child {
+    color: white;
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.revenue-display {
+    background: rgba(228, 10, 10, 0.753);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    color: #2ff03f;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.revenue-display span:first-child {
+    color: white;
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.displays-container {
+    position: absolute;
+    top: 6rem;
+    left: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.reputation-display {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.reputation-meter {
+    width: 100px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.reputation-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #22c55e, #10b981);
+    width: 70%;
+    transition: width 0.3s ease;
+}
+
+#reputationText {
+    font-size: 1rem;
+    min-width: 80px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    max-width: 90%;
+    width: 500px;
+    font-family: 'Segoe UI', sans-serif;
+    position: relative;
+    margin: 0 auto;  /* Center horizontally */
+}
+
+/* Input Modal Styles */
+.investor-input-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.term-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.term-inputs input {
+    padding: 0.8rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    width: 100%;
+}
+
+/* Loan Options Styles */
+.loan-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.loan-options .action-btn {
+    width: 100%;
+    text-align: center;
+}
+
+.loan-options .action-btn small {
+    display: block;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    opacity: 0.8;
+}
+
+/* Toast Styles */
+.toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 2000;
+}
+
+.toast {
+    background: white;
+    color: #1f2937;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Investor Offers Page Styles */
+.investor-offers-page {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+#investorResponses {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Acceptance Popup Styles */
+.acceptance-popup, .loan-acceptance-popup, .loan-repayment-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Add/Update these styles */
+.negotiation-page {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.terms-display {
+    text-align: center;
+    width: 100%;
+}

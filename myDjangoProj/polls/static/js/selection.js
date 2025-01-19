@@ -85,7 +85,7 @@
                 // Wait for animation to complete then redirect
                 setTimeout(() => {
                     // Replace this with your next page URL
-                    window.location.href = 'next-page.html';
+                    window.location.href = 'gameflow.html';
                 }, 500);
             } else {
                 alert('Please select an option before continuing');

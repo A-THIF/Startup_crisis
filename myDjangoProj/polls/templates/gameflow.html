@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Management Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/gameflow.css' %}">
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="ani gameplay.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">
+                AJ Company 
+                <div class="level-container">
+                    Level <span id="levelCounter">1</span>
+                </div>
+            </h1>
+        </div>
+        <div class="displays-container">
+            <div class="fund-display" id="fundDisplay">
+                <span>Fund:</span>
+                <span>₹10,000</span>
+            </div>
+            <div class="equity-display" id="equityDisplay">
+                <span>Equity:</span>
+                <span>100%</span>
+            </div>
+            <div class="revenue-display" id="revenueDisplay">
+                <span>Revenue:</span>
+                <span>₹0</span>
+            </div>
+            <div class="reputation-display" id="reputationDisplay">
+                <span>Reputation:</span>
+                <div class="reputation-meter">
+                    <div class="reputation-fill" id="reputationFill"></div>
+                </div>
+                <span id="reputationText">Good</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="building-section">
+                <button class="action-btn">Investor</button>
+                <button class="action-btn">Loan</button>
+                <button class="action-btn">Grant</button>
+                <button class="action-btn" id="repayLoanBtn" onclick="repayLoan()" style="opacity: 0.5; pointer-events: none;">Repay Loan</button>
+            </div>
+
+            <div class="options">
+                <button class="option-btn" onclick="selectOption()">Option 1</button>
+                <button class="option-btn" onclick="selectOption()">Option 2</button>
+                <button class="option-btn" onclick="selectOption()">Option 3</button>
+                <button class="option-btn" onclick="selectOption()">Option 4</button>
+                <div class="reload-container">
+                    <button class="reload-btn" onclick="window.location.reload()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                            <path d="M21 3v5h-5"/>
+                            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                            <path d="M8 16H3v5"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="sell-button-container">
+                <button class="sell-btn" onclick="showSellModal()">Sell Company</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden modals that will be shown dynamically -->
+    <div class="modal" id="sellModal"></div>
+    <div class="modal" id="loanModal"></div>
+    <div class="investor-input-modal" id="investorInputModal"></div>
+    <div class="investor-offers-page" id="investorOffersPage"></div>
+    <div class="acceptance-popup" id="acceptancePopup"></div>
+    <div class="negotiation-page" id="negotiationPage"></div>
+    <div class="loan-acceptance-popup" id="loanAcceptancePopup"></div>
+    <div class="loan-repayment-popup" id="loanRepaymentPopup"></div>
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Add these elements for grant functionality -->
+    <div id="grantModal" class="modal"></div>
+    <div id="grantSuccessPopup" class="modal"></div>
+    <div id="grantFailurePopup" class="modal"></div>
+
+    <script src="{% static 'js/gameflow.js' %}"></script>
+</body>
+</html>

@@ -21,3 +21,6 @@ def contact(request):
 
 def settings(request):
     return render(request, 'settings.html')  # Ensure the template path is correct
+
+def gameflow(request):
+    return render(request, 'gameflow.html')
