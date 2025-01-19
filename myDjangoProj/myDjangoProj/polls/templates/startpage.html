@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHome Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/startpage.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Stick&display=swap" rel="stylesheet">
+</head>
+<body>
+    <video autoplay muted loop preload="auto" id="background-video">
+        <source src="{% static 'videos/background1.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>    
+    <header class="header">
+        <div class="top-bar">
+            <a href="{% url 'startpage' %}" style="text-decoration: none; color: inherit;">
+                <h1 style="font-family: 'Pixelify Sans', sans-serif; font-weight: 500;">Startup Crisis Management</h1>
+            </a>
+        </div>
+        <div class="menu">
+            <input type="checkbox" id="burger-toggle">
+            <label for="burger-toggle" class="burger-container">
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+            </label>
+        </div>
+    </header>
+    <main class="container page-transition">
+        <div class="quote">
+            <p>In the heart of the crisis, only your decisions matter.</p>
+            <p>The future is unwritten.</p>
+        </div>
+        <button class="play-button" onclick="navigateToGame()">Play now</button>
+    </main>
+    <section class="new-page" style="display: none;" aria-label="Login section">
+        <div class="content">
+            <div class="text">
+                <h1>Get Out and Stretch Your Imagination</h1>
+            </div>
+            <div class="main">  	
+                <input type="checkbox" id="chk" aria-hidden="true">
+        
+                    <div class="signup">
+                        <form>
+                            <label for="chk" aria-hidden="true">Sign up</label>
+                            <input type="text" name="txt" placeholder="User name" required="">
+                            <input type="email" name="email" placeholder="Email" required="">
+                            <input type="number" name="broj" placeholder="Age" required="">
+                            <input type="password" name="pswd" placeholder="Password" required="">
+                            <input type="password" name="confirm_pswd" placeholder="Confirm Password" required="">
+                            <button>Sign up</button>
+                        </form>
+                    </div>
+        
+                    <div class="login">
+                        <form oninput="checkForm()">
+                            <label for="chk" aria-hidden="true">Login</label>
+                            <input type="email" name="email" placeholder="Email" required="">
+                            <input type="password" name="pswd" placeholder="Password" required="">
+                            <button class="login-button" disabled>
+                                <a href="{% url 'selection' %}" class="button-link">Login</a>
+                            </button>
+                        </form>
+                    </div>
+
+            </div>
+        </div>
+    </section>    
+    <div class="overlay"></div>
+    <nav class="side-menu">
+        <ul>
+            <li style="--i: 1;"><a href="{% url 'startpage' %}">HOME</a></li>
+            <li style="--i: 2;"><a href="{% url 'about' %}">ABOUT</a></li>
+            <li style="--i: 4;"><a href="{% url 'contact' %}">CONTACT</a></li>
+            <li style="--i: 5;"><a href="{% url 'settings' %}">SETTINGS</a></li>
+        </ul>
+    </nav>
+    <script src="{% static 'js/startpage.js' %}"></script>
+</body>
+</html>
