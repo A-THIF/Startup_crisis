@@ -8,5 +8,6 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contact/',views.contact,name='contact'),
     path('settings/', views.settings, name='settings'),
-    path('gameflow/', views.gameflow, name='gameflow'),
+    path('selection/gameflow.html', views.gameflow, name='gameflow'),
+    
 ]

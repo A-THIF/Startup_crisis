@@ -68,30 +68,26 @@
         });
     });
 
-    // Add click handlers to all continue buttons
-    document.querySelectorAll('.continue-button').forEach(button => {
-        button.addEventListener('click', function() {
-            // Check if an option is selected
-            const container = this.closest('.page-container');
-            const selectedOption = container.querySelector('.option-button.selected');
+// Add click handlers to all continue buttons
+document.querySelectorAll('.continue-button').forEach(button => {
+    button.addEventListener('click', function() {
+        // Check if an option is selected
+        const container = this.closest('.page-container');
+        const selectedOption = container.querySelector('.option-button.selected');
+        
+        if (selectedOption) {
+            // Store the selection
+            localStorage.setItem('selectedService', selectedOption.textContent);
             
-            if (selectedOption) {
-                // Store the selection
-                localStorage.setItem('selectedService', selectedOption.textContent);
-                
-                // Add fade-out animation
-                container.classList.add('fade-out');
-                
-                // Wait for animation to complete then redirect
-                setTimeout(() => {
-                    // Replace this with your next page URL
-                    window.location.href = '/gameflow/';
-                }, 500);
-            } else {
-                alert('Please select an option before continuing');
-            }
-        });
+            // Navigate to gameflow.html
+            window.location.href = '/selection/gameflow.html';
+            
+            
+        } else {
+            alert('Please select an option before continuing');
+        }
     });
+});
 
     function showServiceOptions(pageId) {
         const page = document.getElementById(pageId);
