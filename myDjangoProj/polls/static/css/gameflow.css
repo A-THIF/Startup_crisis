@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -87,7 +89,8 @@ body::before {
     border-radius: 0.5rem;
     cursor: pointer;
     transition: all 0.2s;
-    font-family: 'Chakra Petch', sans-serif !important;
+    font-family: 'Orbitron', sans-serif !important;
+    letter-spacing: 1px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 1rem;
 }
@@ -117,10 +120,10 @@ body::before {
     cursor: pointer;
     transition: all 0.2s;
     width: 100%;
-    font-family: 'Chakra Petch', sans-serif !important;
+    font-family: 'Orbitron', sans-serif !important;
+    letter-spacing: 1px;
     text-transform: uppercase;
     font-size: 0.9rem;
-    letter-spacing: 0.5px;
     box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2);
 }
 
@@ -146,10 +149,10 @@ body::before {
     cursor: pointer;
     transition: all 0.2s;
     width: 180px;
-    font-family: 'Chakra Petch', sans-serif !important;
+    font-family: 'Orbitron', sans-serif !important;
+    letter-spacing: 1px;
     text-transform: uppercase;
     font-size: 0.9rem;
-    letter-spacing: 0.5px;
     box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
 }
 
@@ -195,7 +198,8 @@ body::before {
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
     color: #e6f0ea;
-    font-family: 'Chakra Petch', sans-serif !important;
+    font-family: 'Orbitron', sans-serif !important;
+    letter-spacing: 1px;
     font-size: 1.25rem;
     font-weight: bold;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -208,7 +212,7 @@ body::before {
 .fund-display span:first-child {
     color: white;
     font-weight: normal;
-    font-size: 1rem;
+    font-size: 1.4rem;
 }
 
 .equity-display {
@@ -216,7 +220,8 @@ body::before {
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
     color: #60a5fa;
-    font-family: 'Chakra Petch', sans-serif !important;
+    font-family: 'Orbitron', sans-serif !important;
+    letter-spacing: 1px;
     font-size: 1.25rem;
     font-weight: bold;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -229,7 +234,7 @@ body::before {
 .equity-display span:first-child {
     color: white;
     font-weight: normal;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .revenue-display {
@@ -237,7 +242,8 @@ body::before {
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
     color: #2ff03f;
-    font-family: 'Chakra Petch', sans-serif !important;
+    font-family: 'Orbitron', sans-serif !important;
+    letter-spacing: 1px;
     font-size: 1.25rem;
     font-weight: bold;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -250,7 +256,7 @@ body::before {
 .revenue-display span:first-child {
     color: white;
     font-weight: normal;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .displays-container {
@@ -266,7 +272,8 @@ body::before {
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
     color: white;
-    font-family: 'Chakra Petch', sans-serif !important;
+    font-family: 'Orbitron', sans-serif !important;
+    letter-spacing: 1px;
     font-size: 1.25rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(4px);
@@ -488,4 +495,60 @@ textarea,
 .score-text,
 .menu-text {
     font-family: 'Chakra Petch', sans-serif;
+}
+
+/* Update non-interactable elements */
+.fund-display,
+.fund-display span,
+.equity-display,
+.equity-display span,
+.revenue-display,
+.revenue-display span {
+    font-family: 'Orbitron', sans-serif !important;
+    letter-spacing: 1px;
+}
+
+/* Make the labels (Fund:, Equity:, Revenue:) slightly different */
+.fund-display span:first-child,
+.equity-display span:first-child,
+.revenue-display span:first-child {
+    font-family: 'Roboto Mono', monospace !important;
+    font-size: 1.4rem;
+    letter-spacing: 0;
+}
+
+/* Adjust the value text size */
+.fund-display span:last-child,
+.equity-display span:last-child,
+.revenue-display span:last-child {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Update display values and their spans */
+.fund-display,
+.fund-display span,
+.equity-display,
+.equity-display span,
+.revenue-display,
+.revenue-display span {
+    font-family: 'Orbitron', sans-serif !important;
+    letter-spacing: 1px;
+}
+
+/* Make the labels (Fund:, Equity:, Revenue:) slightly different */
+.fund-display span:first-child,
+.equity-display span:first-child,
+.revenue-display span:first-child {
+    font-family: 'Roboto Mono', monospace !important;
+    font-size: 1.4rem;
+    letter-spacing: 0;
+}
+
+/* Adjust the value text size */
+.fund-display span:last-child,
+.equity-display span:last-child,
+.revenue-display span:last-child {
+    font-size: 1.1rem;
+    font-weight: 600;
 }
