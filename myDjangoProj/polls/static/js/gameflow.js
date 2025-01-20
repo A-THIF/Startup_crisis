@@ -607,7 +607,7 @@ function endGame() {
                 </div>
             </div>
             
-            <button onclick="window.location.reload()" 
+            <button onclick="window.location.href='../../'" 
                 style="padding: 1rem 2rem; background: #f97316; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-size: 1.1rem;">
                 Start New Game
             </button>

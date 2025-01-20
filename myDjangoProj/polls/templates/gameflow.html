@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="{% static 'css/gameflow.css' %}">
 </head>
 <body>
-    <video autoplay muted loop id="background-video">
-        <source src="ani gameplay.mp4" type="video/mp4">
+    <video id="background-video" autoplay muted loop>
+        <source src="{% static 'videos/anigameplay.mp4' %}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+    <div class="overlay"></div>
     <div class="container">
         <div class="header">
             <h1 class="title">
