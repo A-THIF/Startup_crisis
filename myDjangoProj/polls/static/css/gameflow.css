@@ -73,9 +73,9 @@ body::before {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.2rem;
     max-width: 700px;
-    margin-left: 18rem;
+    margin-left: 10rem;
     position: absolute;
-    top: 25rem;
+    top: 24rem;
 }
 
 .option-btn {
