@@ -161,144 +161,6 @@ body::before {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
-.play-button {
-    position: absolute;
-    top: 80%;
-    left: 48%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(157, 40, 24, 1);
-    color: white;
-    border: none;
-    font-size: 1.5em;
-    text-transform: uppercase;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
-    font-family: 'Stick', sans-serif;
-    letter-spacing: 2px;
-    width: 311.7px;
-    height: 68px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.play-button:hover {
-    background-color: rgba(120, 30, 20, 1);
-}
-
-.play-button:active {
-    transform: translate(-50%, -50%) scale(0.95);
-}
-
-.new-page {
-    /* background: linear-gradient(
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5)
-    );*/
-    height: 100vh;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-}
-
-.new-page .content {
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 50px;
-}
-
-.new-page .text {
-    flex: 1;
-    text-align: left;
-}
-
-.new-page .buttons {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    align-items: flex-end;
-}
-
-.new-page button {
-    background-color: rgba(157, 40, 24, 1);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.5em;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
-    font-family: 'Stick', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    width: 311.7px;
-    height: 68px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.new-page button:hover {
-    background-color: rgba(120, 30, 20, 1);
-}
-
-.new-page button:active {
-    transform: scale(0.95);
-}
-
-.quote {
-    margin-top: 50px;
-    padding: 20px;
-}
-
-.quote p {
-    font-size: 1.8em;
-    margin: 20px 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    line-height: 1.4;
-}
-
-.page-transition {
-    transition: opacity 0.3s ease-in-out;
-}
-
-.fade-out {
-    opacity: 0;
-}
-
-.fade-in {
-    opacity: 1;
-}
-
-.new-page .text h1 {
-    font-size: 3em;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 2000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.5s ease-in-out;
-    pointer-events: none;
-}
-
 .side-menu {
     position: fixed;
     top: 0;
@@ -318,12 +180,6 @@ body::before {
     right: 0;
     visibility: visible;
     opacity: 1;
-}
-
-.overlay.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
 }
 
 .side-menu ul {
@@ -391,16 +247,7 @@ body::before {
     padding: 20px 0;
     margin: 50px;
 }
-.main{
-	width: 350px;
-	height: 500px;
-	background: red;
-	overflow: hidden;
-	background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover;
-	border-radius: 10px;
-	box-shadow: 5px 20px 50px #000;
-	margin-top: 160px;
-}
+
 #background-video {
     position: fixed;
     right: 0;
@@ -438,13 +285,13 @@ body::before {
 .container h2 {
     font-size: 2.2em;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-top: 95px;
     color: #ffcc00; /* Yellow color for the title */
 }
 
 /* User Info Section */
 .user-info p {
-    font-size: 1.2em;
+    font-size: 1.5em;
     margin: 10px 0;
     font-weight: 500;
 }
@@ -467,10 +314,10 @@ body::before {
 }
 
 .switch-container label {
-    font-size: 1.1em;
+    font-size: 1.7em;
     font-weight: 600;
     color: #fff;
-    margin-right: 20px;
+    margin-left: 40px;
 }
 
 /* Switch Styling */
@@ -482,6 +329,7 @@ body::before {
     position: relative;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    margin-right: 40px;
 }
 
 .switch.on {
@@ -514,17 +362,23 @@ body::before {
     margin-top: 30px;
 }
 
-.sign-out-btn {
-    padding: 12px 30px;
-    background-color: #f44336; /* Red color for Sign Out */
-    color: white;
-    border: none;
-    font-size: 1.2em;
-    font-weight: 600;
-    border-radius: 30px;
-    cursor: pointer;
-    width: 200px;
-    transition: background-color 0.3s, transform 0.1s;
+.sign-out-btn {background-color: rgba(157, 40, 24, 1); /* Red background color */
+    color: white; /* White text */
+    border: none; /* No border */
+    font-size: 1.5em; /* Larger font size */
+    text-transform: uppercase; /* Uppercase text */
+    border-radius: 30px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.1s; /* Smooth transitions */
+    font-family: 'Stick', sans-serif; /* Stick font */
+    letter-spacing: 2px; /* Space between letters */
+    width: 311.7px; /* Fixed width */
+    height: 68px; /* Fixed height */
+    display: flex; /* Center text horizontally */
+    justify-content: center; /* Center text horizontally */
+    align-items: center; /* Center text vertically */
+    margin-bottom: 40px; /* Center the button inside its container */
+    text-decoration: none; /* Removes underline */
 }
 
 .sign-out-btn:hover {

@@ -36,6 +36,11 @@ body::before {
     z-index: 1;
 }
 
+/* Duplicate body style commented out */
+/* body {
+    filter: brightness(1.1) contrast(1.1);
+} */
+
 .header {
     position: fixed;
     top: 0;
@@ -92,16 +97,6 @@ body::before {
     margin-bottom: 20px;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100vh;
-    position: relative;
-}
-
 #burger-toggle {
     display: none;
 }
@@ -121,7 +116,6 @@ body::before {
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    margin: 50px;
 }
 
 .burger-line {
@@ -157,8 +151,6 @@ body::before {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
-
-
 .side-menu {
     position: fixed;
     top: 0;
@@ -180,11 +172,7 @@ body::before {
     opacity: 1;
 }
 
-.overlay.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
+
 
 .side-menu ul {
     list-style: none;
@@ -209,7 +197,7 @@ body::before {
 .side-menu ul li a {
     color: white;
     text-decoration: none;
-    font-size: 1.2em;
+    font-size: 2em;
     transition: color 0.3s;
     font-family: 'Stick', sans-serif;
     letter-spacing: 1px;
@@ -219,6 +207,38 @@ body::before {
     color: rgba(157, 40, 24, 1);
 }
 
+@media (max-width: 768px) {
+    .side-menu {
+        width: 80%;
+    }
+    .header h1 {
+        font-size: 1.2em;
+    }
+    .play-button {
+        font-size: 1em;
+        width: 250px;
+        height: 50px;
+    }
+}
+
+#burger-toggle:checked ~ .side-menu {
+    right: 0;
+    visibility: visible;
+    opacity: 1;
+}
+
+#burger-toggle:checked ~ .overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    margin: 50px;
+}
 
 #background-video {
     position: fixed;
@@ -230,47 +250,7 @@ body::before {
     object-fit: cover;
 }
 
-a.button-link {
-    color: white !important;
-    text-decoration: none !important;
-}
-
-a.button-link:hover {
-    color: lightgray;
-}
-h3 {
-    font-size: 2em; /* Adjust as needed */
-    margin-bottom: 20px;
-}
-.underline {
-    margin-top: 20px; 
-    border-bottom: 2px solid rgb(255, 255, 255); /* Adjust the thickness and color of the underscore */
-    display: inline-block; /* Ensure the border is only applied to the text */
-    padding-bottom: 5px; /* Optional: Adjust spacing between the text and the underline */
-}
-
-ul {
-    list-style-type: none; /* Remove default bullet points */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
-}
-ul li {
-    font-size: 1.5em; /* Adjust as needed */
-    margin-bottom: 10px; /* Space between list items */
-    font-family: 'Stick';
-}
-h1 {
-    margin-top: 50px;
-    margin-bottom: 20px;  /* Adjust this value to control the gap below the <h1> */
-}
-ul li a {
-    color: white; /* Set link color to white */
-    text-decoration: none; /* Remove underline from links */
-}
-
-ul li a:hover {
-    text-decoration: underline; /* Optional: underline on hover */
-}
+/* Settings Container */
 .container {
     display: flex;
     flex-direction: column;
@@ -285,10 +265,40 @@ ul li a:hover {
     height: 450px;
     padding-bottom: 60px;
     border-radius: 20px;
-    box-shadow: rgb(0, 0, 0) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     color: white;
     font-family: 'Pixelify Sans', sans-serif;
     z-index: 1;
     overflow: hidden;
     backdrop-filter: blur(10px); /* Add blur effect to the container background */
+}
+.signout-content p {
+    margin: 10px 0;
+    font-size: 25px;
+    color: #ffffff;
+}
+ .login-button{
+    background-color: rgba(157, 40, 24, 1); /* Red background color */
+    color: white; /* White text */
+    border: none; /* No border */
+    font-size: 1.5em; /* Larger font size */
+    text-transform: uppercase; /* Uppercase text */
+    border-radius: 30px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.1s; /* Smooth transitions */
+    font-family: 'Stick', sans-serif; /* Stick font */
+    letter-spacing: 2px; /* Space between letters */
+    width: 311.7px; /* Fixed width */
+    height: 68px; /* Fixed height */
+    display: flex; /* Center text horizontally */
+    justify-content: center; /* Center text horizontally */
+    align-items: center; /* Center text vertically */
+    margin: 20px auto; /* Center the button inside its container */
+    text-decoration: none; /* Removes underline */
+}
+
+/* Hover effect */
+.login-button:hover {
+    background-color: #e53935;
+    transform: scale(1.05); /* Slight zoom effect */
 }

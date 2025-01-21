@@ -9,5 +9,6 @@ urlpatterns = [
     path('contact/',views.contact,name='contact'),
     path('settings/', views.settings, name='settings'),
     path('selection/gameflow.html', views.gameflow, name='gameflow'),
+    path('signout/',views.signout, name='signout'),
     
 ]
