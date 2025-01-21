@@ -406,19 +406,44 @@ function updateLoanButton() {
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
-    // Existing event listeners
-document.querySelector('.building-section .action-btn:first-child').onclick = showInvestorModal;
-document.querySelector('.building-section .action-btn:nth-child(2)').onclick = showLoanModal;
-document.querySelector('.building-section .action-btn:nth-child(3)').onclick = showGrantModal;
-document.querySelector('.sell-btn').onclick = showSellModal;
+    const menuBtn = document.querySelector('.menu-btn');
+    const sideNav = document.querySelector('.side-nav');
+    let menuOpen = false;
 
-// Initial calls
-updateFundDisplay();
-updateEquityDisplay();
-updateRevenueDisplay();
-updateReputationDisplay();
-updateRepayButton();
-updateLoanButton();
+    menuBtn.addEventListener('click', () => {
+        if(!menuOpen) {
+            menuBtn.classList.add('open');
+            sideNav.classList.add('open');
+            menuOpen = true;
+        } else {
+            menuBtn.classList.remove('open');
+            sideNav.classList.remove('open');
+            menuOpen = false;
+        }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (menuOpen && !sideNav.contains(e.target) && !menuBtn.contains(e.target)) {
+            menuBtn.classList.remove('open');
+            sideNav.classList.remove('open');
+            menuOpen = false;
+        }
+    });
+
+    // Existing event listeners
+    document.querySelector('.building-section .action-btn:first-child').onclick = showInvestorModal;
+    document.querySelector('.building-section .action-btn:nth-child(2)').onclick = showLoanModal;
+    document.querySelector('.building-section .action-btn:nth-child(3)').onclick = showGrantModal;
+    document.querySelector('.sell-btn').onclick = showSellModal;
+
+    // Initial calls
+    updateFundDisplay();
+    updateEquityDisplay();
+    updateRevenueDisplay();
+    updateReputationDisplay();
+    updateRepayButton();
+    updateLoanButton();
     updateGrantButton();
     updateInvestorButton();
 });
