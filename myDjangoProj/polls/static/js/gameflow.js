@@ -13,6 +13,7 @@ let lastGrantAmount = 0;
 let reputation = 70;
 let currentLoanOffer = null;
 let hasUsedInvestor = false;
+let businessName = '';
 
 // Investors array
 const investors = [
@@ -22,6 +23,14 @@ const investors = [
     { name: "Strategic Investors", minEquity: 25, maxEquity: 45, preferredAmount: 150000 },
     { name: "Seed Fund", minEquity: 5, maxEquity: 15, preferredAmount: 25000 }
 ];
+
+// Add this function to get URL parameters
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
 
 // Display Update Functions
 function updateFundDisplay() {
@@ -217,7 +226,7 @@ function acceptOffer(investorName, amount, equityGiven) {
     acceptancePopup.style.display = 'flex';
     acceptancePopup.innerHTML = `
         <div class="modal-content" style="width: 400px; position: relative;">
-            <h2 style="color: #1f2937; margin-bottom: 2rem; font-size: 1.5rem;">Deal Accepted!</h2>
+            <h2 style="color: #1f2937; margin-bottom: 2rem;">Deal Accepted!</h2>
             <div style="margin: 1.5rem 0; text-align: center;">
                 <p style="margin: 0.5rem 0;">Investor: ${investorName}</p>
                 <p style="margin: 0.5rem 0;">Amount: ₹${amount.toLocaleString()}</p>
@@ -446,6 +455,9 @@ document.addEventListener('DOMContentLoaded', function() {
     updateLoanButton();
     updateGrantButton();
     updateInvestorButton();
+
+    // Update the company name in the UI
+    updateCompanyName();
 });
 
 // Add this function back
@@ -659,7 +671,21 @@ function selectOption() {
     // Update level display
     document.getElementById('levelCounter').textContent = currentLevel;
     
-    // Update reputation (optional - adds some game dynamics)
+    // Update level image based on level ranges
+    const levelImage = document.getElementById('levelImage');
+    if (levelImage) {
+        if (currentLevel <= 10) {
+            levelImage.src = `/static/images/level1.png`;
+        } else if (currentLevel <= 20) {
+            levelImage.src = `/static/images/level2.png`;
+        } else if (currentLevel <= 30) {
+            levelImage.src = `/static/images/level3.png`;
+        } else {
+            levelImage.src = `/static/images/level4.png`;
+        }
+    }
+    
+    // Update reputation
     reputation = Math.min(reputation + 2, 100);
     updateReputationDisplay();
 }
@@ -683,4 +709,19 @@ function showOptions() {
             </button>
         </div>
     `;
+}
+
+// Modify the updateCompanyName function
+function updateCompanyName() {
+    const titleElement = document.querySelector('.title');
+    if (titleElement) {
+        // Get company name from localStorage
+        businessName = localStorage.getItem('companyName') || 'AJ Company';
+        titleElement.innerHTML = `
+            ${businessName} 
+            <div class="level-container">
+                Level <span id="levelCounter">1</span>
+            </div>
+        `;
+    }
 }

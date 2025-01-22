@@ -28,17 +28,11 @@
 
     // Game initialization
     function startGame() {
-        const companyName = document.getElementById('companyName').value.trim();
-        
-        if (companyName && selectedBusiness) {
-            localStorage.setItem('companyName', companyName);
-            
-            // Hide main page
-            document.getElementById('mainPage').style.display = 'none';
-            
-            // Show and animate selected business page
-            showServiceOptions(`${selectedBusiness}Page`);
-        }
+        const companyName = document.getElementById('companyName').value;
+        // Store company name in localStorage
+        localStorage.setItem('companyName', companyName);
+        // Redirect to game page
+        window.location.href = 'gameflow.html';
     }
 
     // Add initial animation
