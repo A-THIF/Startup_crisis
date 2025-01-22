@@ -651,3 +651,36 @@ function updateInvestorButton() {
         investorButton.style.pointerEvents = 'auto';
     }
 }
+
+function selectOption() {
+    // Increment level
+    currentLevel++;
+    
+    // Update level display
+    document.getElementById('levelCounter').textContent = currentLevel;
+    
+    // Update reputation (optional - adds some game dynamics)
+    reputation = Math.min(reputation + 2, 100);
+    updateReputationDisplay();
+}
+
+// Update the options div in the showOptions function or wherever you create the options
+function showOptions() {
+    const options = document.querySelector('.options');
+    options.innerHTML = `
+        <button class="option-btn" onclick="selectOption()">Option 1</button>
+        <button class="option-btn" onclick="selectOption()">Option 2</button>
+        <button class="option-btn" onclick="selectOption()">Option 3</button>
+        <button class="option-btn" onclick="selectOption()">Option 4</button>
+        <div class="reload-container">
+            <button class="reload-btn" onclick="window.location.reload()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                    <path d="M21 3v5h-5"/>
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                    <path d="M8 16H3v5"/>
+                </svg>
+            </button>
+        </div>
+    `;
+}
