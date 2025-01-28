@@ -31,8 +31,15 @@
         const companyName = document.getElementById('companyName').value;
         // Store company name in localStorage
         localStorage.setItem('companyName', companyName);
-        // Redirect to game page
-        window.location.href = 'gameflow.html';
+        
+        // Instead of redirecting to gameflow, show the appropriate service page
+        const pageId = selectedBusiness + 'Page';
+        
+        // Hide main page
+        document.getElementById('mainPage').style.display = 'none';
+        
+        // Show the corresponding service selection page
+        showServiceOptions(pageId);
     }
 
     // Add initial animation
@@ -73,10 +80,8 @@ document.querySelectorAll('.continue-button').forEach(button => {
             // Store the selection
             localStorage.setItem('selectedService', selectedOption.textContent);
             
-            // Navigate to gameflow.html
-            window.location.href = '/selection/gameflow.html';
-            
-            
+            // Navigate to gameflow using Django URL
+            window.location.href = '/gameflow';
         } else {
             alert('Please select an option before continuing');
         }
