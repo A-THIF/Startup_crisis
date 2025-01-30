@@ -11,4 +11,6 @@ urlpatterns = [
     path('settings/', views.settings, name='settings'),
     path('gameflow/', views.gameflow, name='gameflow'),
     path('signout/', views.signout, name='signout'),
+    path('settings2/', views.settings2, name='settings2'),
+    path('exit/', views.exit_view, name='exit'),
 ]

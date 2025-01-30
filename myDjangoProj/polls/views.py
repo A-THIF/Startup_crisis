@@ -27,3 +27,9 @@ def gameflow(request):
 
 def signout(request):
     return render(request, 'signout.html')
+
+def settings2(request):
+    return render(request, 'settings2.html')
+
+def exit_view(request):
+    return render(request, 'exit.html')

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            min-height: 100vh;  /* Ensure body takes full viewport height */
+            display: flex;      /* Enable flexbox */
+            align-items: center;  /* Center vertically */
+            justify-content: center;  /* Center horizontally */
+        }
+
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .settings-container {
+            width: 90%;         /* Make container responsive */
+            max-width: 800px;   /* Keep maximum width */
+            margin: 0 auto;     /* Changed from margin: 50px auto */
+            padding: 30px;      /* Increased padding slightly */
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;  /* For proper stacking context */
+            z-index: 1;         /* Ensure container appears above background */
+        }
+
+        .profile-section {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-info {
+            margin-bottom: 20px;
+        }
+
+        .profile-info h2 {
+            color: #FFCC00;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .info-item {
+            margin: 10px 0;
+            font-size: 1.1em;
+            font-family: 'Pixelify Sans', sans-serif;
+        }
+
+        .info-item strong {
+            font-family: 'Pixelify Sans', sans-serif;
+            font-size: 1.2em;
+        }
+
+        .audio-controls {
+            padding: 20px;
+        }
+
+        .audio-controls h2 {
+            color: #FFCC00;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .control-item {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            justify-content: space-between;
+            font-family: 'Pixelify Sans', sans-serif;
+            font-size: 1.2em;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .back-button {
+            position: fixed;    /* Changed from absolute to fixed */
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            z-index: 2;        /* Ensure button appears above container */
+        }
+
+        .back-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="{% static 'videos/anigameplay.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <a href="{% url 'gameflow' %}" class="back-button">Back to Game</a>
+
+    <div class="settings-container">
+        <div class="profile-section">
+            <div class="profile-info">
+                <h2>Profile Settings</h2>
+                <div class="info-item">
+                    <strong>Username:</strong> <span id="username">{{ user.username }}</span>
+                </div>
+                <div class="info-item">
+                    <strong>Email:</strong> <span id="email">{{ user.email }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="audio-controls">
+            <h2>Audio Settings</h2>
+            <div class="control-item">
+                <span>Background Music</span>
+                <label class="switch">
+                    <input type="checkbox" id="musicToggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="control-item">
+                <span>Sound Effects</span>
+                <label class="switch">
+                    <input type="checkbox" id="soundToggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="control-item">
+                <span>Notifications</span>
+                <label class="switch">
+                    <input type="checkbox" id="notificationToggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Save settings to localStorage when toggled
+        document.querySelectorAll('input[type="checkbox"]').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                localStorage.setItem(this.id, this.checked);
+                
+                // If it's the music toggle, emit a custom event
+                if (this.id === 'musicToggle') {
+                    const event = new CustomEvent('musicSettingChanged', {
+                        detail: { enabled: this.checked }
+                    });
+                    window.dispatchEvent(event);
+                }
+            });
+
+            // Load saved settings on page load
+            const savedState = localStorage.getItem(toggle.id);
+            if (savedState !== null) {
+                toggle.checked = savedState === 'true';
+            }
+        });
+    </script>
+</body>
+</html>

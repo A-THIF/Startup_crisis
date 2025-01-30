@@ -6,6 +6,89 @@
     <title>Game Flow</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/gameflow.css' %}">
+    <style>
+        /* Exit Modal Styles */
+        .exit-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .exit-container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.5s ease-out;
+            max-width: 90%;
+            width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .exit-message {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #FFCC00;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            font-family: 'Pixelify Sans', sans-serif;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .exit-button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Pixelify Sans', sans-serif;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .yes-button {
+            background-color: #ff4444;
+            color: white;
+        }
+
+        .no-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .exit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .exit-button:active {
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
     <video id="background-video" autoplay muted loop>
@@ -20,11 +103,9 @@
     </div>
     <div class="side-nav">
         <ul class="nav-links">
-            
             <li><a href="#">INSTRUCTIONS</a></li>
-            <li><a href="#">Settings</a></li><br>
-            <li><a href="{% url 'startpage' %}">Exit</a></li>
-
+            <li><a href="{% url 'settings2' %}">Settings</a></li><br>
+            <li><a href="#" onclick="showExitModal(); return false;">Exit</a></li>
         </ul>
     </div>
     
@@ -106,11 +187,43 @@
     <div id="grantSuccessPopup" class="modal"></div>
     <div id="grantFailurePopup" class="modal"></div>
 
+    <!-- Add this exit modal HTML -->
+    <div class="exit-modal" id="exitModal">
+        <div class="exit-container">
+            <div class="exit-message">
+                Are you sure you want to exit?
+            </div>
+            <div class="button-container">
+                <a href="{% url 'startpage' %}">
+                    <button class="exit-button yes-button">Yes</button>
+                </a>
+                <button class="exit-button no-button" onclick="closeExitModal()">No</button>
+            </div>
+        </div>
+    </div>
+
     <script src="{% static 'js/gameflow.js' %}"></script>
 
     <!-- Adjusted image container position -->
     <div style="position: absolute; top: 12rem; left: 50%; transform: translateX(-50%); width: 300px; height: 200px; z-index: 1;">
         <img id="levelImage" src="{% static 'images/level1.png' %}" alt="Level" style="width: 100%; height: 100%; object-fit: contain;">
     </div>
+
+    <script>
+        // Add these functions for exit modal
+        function showExitModal() {
+            document.getElementById('exitModal').style.display = 'flex';
+        }
+
+        function closeExitModal() {
+            document.getElementById('exitModal').style.display = 'none';
+        }
+
+        // Update the exit link to trigger modal instead of navigation
+        document.querySelector('.nav-links a[href*="exit"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            showExitModal();
+        });
+    </script>
 </body>
 </html>

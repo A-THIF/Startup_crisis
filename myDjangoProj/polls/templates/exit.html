@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exit Confirmation</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .exit-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.5s ease-out;
+            max-width: 90%;
+            width: 400px;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .exit-message {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #FFCC00;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .exit-button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Pixelify Sans', sans-serif;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .yes-button {
+            background-color: #ff4444;
+            color: white;
+        }
+
+        .no-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .exit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .exit-button:active {
+            transform: translateY(0);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="{% static 'videos/anigameplay.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="overlay"></div>
+
+    <div class="exit-container">
+        <div class="exit-message">
+            Are you sure you want to exit?
+        </div>
+        <div class="button-container">
+            <a href="{% url 'startpage' %}">
+                <button class="exit-button yes-button">Yes</button>
+            </a>
+            <a href="{% url 'gameflow' %}">
+                <button class="exit-button no-button">No</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Add hover sound effect (optional)
+        const buttons = document.querySelectorAll('.exit-button');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                // Add hover sound here if needed
+            });
+        });
+    </script>
+</body>
+</html>
