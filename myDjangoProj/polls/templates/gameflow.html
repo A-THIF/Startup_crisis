@@ -88,6 +88,18 @@
         .exit-button:active {
             transform: translateY(0);
         }
+
+        /* Add hover effect for buttons */
+        .action-btn:hover, .option-btn:hover, .sell-btn:hover {
+            box-shadow: 0 0 10px #8A00C4, 0 0 20px #8A00C4, 0 0 30px #8A00C4;
+            transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            background-color: #4B0082; /* Indigo color for hover */
+        }
+
+        /* Ensure dimmed buttons do not have the hover effect */
+        .action-btn[style*="opacity: 0.5"], .option-btn[style*="opacity: 0.5"], .sell-btn[style*="opacity: 0.5"] {
+            pointer-events: none; /* Disable hover effect */
+        }
     </style>
 </head>
 <body>
@@ -142,10 +154,28 @@
 
         <div class="controls">
             <div class="building-section">
-                <button class="action-btn">Investor</button>
+                <button class="action-btn" onclick="showInvestorOptions()">Investor</button>
                 <button class="action-btn">Loan</button>
                 <button class="action-btn">Grant</button>
                 <button class="action-btn" id="repayLoanBtn" onclick="repayLoan()" style="opacity: 0.5; pointer-events: none;">Repay Loan</button>
+            </div>
+
+            <!-- Add inputs for equity range -->
+            <div id="investorOptions" style="display: none; border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+                <label for="minEquity">Min Equity:</label>
+                <input type="number" id="minEquity" min="0" max="100" value="0">
+                <label for="maxEquity">Max Equity:</label>
+                <input type="number" id="maxEquity" min="0" max="100" value="100">
+                <button onclick="filterInvestors()">Filter Investors</button>
+
+                <!-- Container for displaying eligible investors -->
+                <div id="eligibleInvestors" style="margin-top: 10px;"></div>
+
+                <!-- Add Accept and Negotiate buttons -->
+                <div style="margin-top: 10px;">
+                    <button class="action-btn" onclick="acceptInvestors()">Accept</button>
+                    <button class="action-btn" onclick="negotiateInvestors()">Negotiate</button>
+                </div>
             </div>
 
             <div class="options">
@@ -224,6 +254,60 @@
             e.preventDefault();
             showExitModal();
         });
+
+        function showInvestorOptions() {
+            document.getElementById('investorOptions').style.display = 'block';
+        }
+
+        function filterInvestors() {
+            const minEquity = parseInt(document.getElementById('minEquity').value, 10);
+            const maxEquity = parseInt(document.getElementById('maxEquity').value, 10);
+
+            // Example list of investors with their equity offers
+            const investors = [
+                { name: 'Investor A', equity: 10 },
+                { name: 'Investor B', equity: 25 },
+                { name: 'Investor C', equity: 50 },
+                { name: 'Investor D', equity: 75 },
+            ];
+
+            const eligibleInvestors = investors.filter(investor => investor.equity >= minEquity && investor.equity <= maxEquity);
+
+            // Display eligible investors with checkboxes
+            const investorContainer = document.getElementById('eligibleInvestors');
+            investorContainer.innerHTML = ''; // Clear previous results
+
+            if (eligibleInvestors.length > 0) {
+                eligibleInvestors.forEach(investor => {
+                    const investorItem = document.createElement('div');
+                    investorItem.innerHTML = `
+                        <input type="checkbox" id="${investor.name}" name="investor" value="${investor.name}">
+                        <label for="${investor.name}">${investor.name} - ${investor.equity}%</label>
+                    `;
+                    investorContainer.appendChild(investorItem);
+                });
+            } else {
+                investorContainer.innerHTML = 'No eligible investors found.';
+            }
+        }
+
+        function acceptInvestors() {
+            const selectedInvestors = document.querySelectorAll('input[name="investor"]:checked');
+            let investorNames = [];
+            selectedInvestors.forEach(investor => {
+                investorNames.push(investor.value);
+            });
+            alert('Accepted Investors: ' + investorNames.join(', '));
+        }
+
+        function negotiateInvestors() {
+            const selectedInvestors = document.querySelectorAll('input[name="investor"]:checked');
+            let investorNames = [];
+            selectedInvestors.forEach(investor => {
+                investorNames.push(investor.value);
+            });
+            alert('Negotiating with Investors: ' + investorNames.join(', '));
+        }
     </script>
 </body>
 </html>
