@@ -14,6 +14,8 @@ let reputation = 70;
 let currentLoanOffer = null;
 let hasUsedInvestor = false;
 let businessName = '';
+let currentSegment = 0;
+let progress = 0;
 
 // Investors array
 const investors = [
@@ -76,6 +78,14 @@ function updateReputationDisplay() {
         fill.style.background = 'linear-gradient(90deg, #dc2626, #991b1b)';
         text.textContent = 'Critical';
     }
+}
+
+function updateProgressDisplay() {
+    const fill = document.getElementById('progressFill');
+    const text = document.getElementById('progressText');
+    
+    fill.style.width = `${progress}%`;
+    text.textContent = `${progress}%`;
 }
 
 // Investor Functions
@@ -723,5 +733,29 @@ function updateCompanyName() {
                 Level <span id="levelCounter">1</span>
             </div>
         `;
+    }
+}
+
+function confirmSelection() {
+    // Implement the logic for confirming the selection
+    console.log('Selection confirmed');
+    // Remove the active class from all option buttons
+    const optionButtons = document.querySelectorAll('.option-btn');
+    optionButtons.forEach(button => button.classList.remove('active'));
+
+    // Update the progress bar
+    if (currentSegment < 9) {
+        currentSegment++;
+        document.getElementById(`segment${currentSegment}`).classList.add('active');
+        updateProgressDisplay();
+    }
+
+    // Redirect or perform actions based on the confirmation
+}
+
+function increaseProgress() {
+    if (progress < 100) {
+        progress += 10; // Increase progress by 10% each time
+        updateProgressDisplay();
     }
 }

@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="{% static 'css/about.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Stick&display=swap" rel="stylesheet">
+    <style>
+        /* Remove any existing background styles */
+        body {
+            background: none;
+        }
+    </style>
+    <!-- Include Three.js and Vanta.js -->
+    <script src="{% static 'js/three.r134.min.js' %}"></script>
+    <script src="{% static 'js/vanta.net.min.js' %}"></script>
 </head>
 <body>
     <video autoplay muted loop preload="auto" id="background-video">
@@ -50,6 +59,8 @@
         </ul>
     </main>
 
+    <!-- Include the background.js script -->
+    <script src="{% static 'js/background.js' %}"></script>
     <script src="{% static 'js/startpage.js' %}"></script>
 </body>
 </html>

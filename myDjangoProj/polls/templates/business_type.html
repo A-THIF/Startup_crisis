@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Type Selection</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/business_type.css' %}">
+    <style>
+        /* Ensure buttons are aligned */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .business-btn {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .business-btn:hover {
+            background-color: #4B0082; /* Indigo color for hover */
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Select Your Business Type</h1>
+    </header>
+    <main class="container">
+        <div class="button-container">
+            <button class="business-btn" onclick="selectBusinessType('Technology')">Technology</button>
+            <button class="business-btn" onclick="selectBusinessType('Entertainment')">Entertainment</button>
+        </div>
+    </main>
+
+    <!-- Include the background.js script for animated background -->
+    <script src="{% static 'js/background.js' %}"></script>
+    <script>
+        function selectBusinessType(type) {
+            // Implement the logic for selecting a business type
+            console.log('Selected business type:', type);
+            // Redirect or perform actions based on the selected type
+        }
+    </script>
+</body>
+</html> 

@@ -82,23 +82,55 @@ body::before {
 }
 
 .option-btn {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    width: 400px; /* Set a fixed width */
+    height: 60px; /* Set a fixed height */
+    padding: 10px 20px;
+    font-size: 1.2em;
     border: none;
-    padding: 1rem 13rem;
-    border-radius: 0.5rem;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'Orbitron', sans-serif !important;
-    letter-spacing: 1px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 1rem;
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    text-align: center; /* Center text */
+    line-height: 1.5; /* Adjust line height for vertical centering */
 }
 
 .option-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px #8A00C4, 0 0 20px #8A00C4, 0 0 30px #8A00C4;
+    background-color: #4B0082; /* Indigo color for hover */
+}
+
+.option-btn.active {
+    box-shadow: 0 0 10px #8A00C4, 0 0 20px #8A00C4, 0 0 30px #8A00C4;
+    background-color: #4B0082; /* Indigo color for active state */
+}
+
+.confirm-btn {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: orange;
+    color: white;
+    transition: background-color 0.3s ease;
+    opacity: 0.5; /* Initially disabled */
+    pointer-events: none; /* Initially disabled */
+}
+
+.confirm-btn.enabled {
+    opacity: 1;
+    pointer-events: auto; /* Enable when conditions are met */
+}
+
+.confirm-btn:hover {
+    background-color: #e69500; /* Darker orange on hover */
+}
+
+.confirm-container {
+    text-align: right;
+    margin-top: 20px;
+    position: relative;
+    z-index: 10;
 }
 
 .building-section {
@@ -644,4 +676,28 @@ textarea,
 
 .nav-links li a:hover {
     color: #4CAF50;
+}
+
+.reputation-display {
+    margin-top: 10px;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+.reputation-meter {
+    width: 100%;
+    max-width: 300px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 10px;
+    margin: 5px auto;
+}
+
+.reputation-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #4CAF50;
+    transition: width 0.3s ease;
 }

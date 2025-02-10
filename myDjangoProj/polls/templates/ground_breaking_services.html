@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ground Breaking Services</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/ground_breaking_services.css' %}">
+    <style>
+        .option-btn {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        }
+
+        .option-btn:hover {
+            box-shadow: 0 0 10px #8A00C4, 0 0 20px #8A00C4, 0 0 30px #8A00C4;
+            background-color: #4B0082; /* Indigo color for hover */
+        }
+
+        .option-btn.active {
+            box-shadow: 0 0 10px #8A00C4, 0 0 20px #8A00C4, 0 0 30px #8A00C4;
+            background-color: #4B0082; /* Indigo color for active state */
+        }
+
+        .confirm-btn {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: orange;
+            color: white;
+            transition: background-color 0.3s ease;
+            opacity: 0.5; /* Initially disabled */
+            pointer-events: none; /* Initially disabled */
+        }
+
+        .confirm-btn.enabled {
+            opacity: 1;
+            pointer-events: auto; /* Enable when conditions are met */
+        }
+
+        .confirm-btn:hover {
+            background-color: #e69500; /* Darker orange on hover */
+        }
+
+        .confirm-container {
+            text-align: right;
+            margin-top: 20px;
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 style="font-family: 'YourOriginalFontFamily', sans-serif; font-size: 2em;">Ground Breaking Services</h1>
+    </header>
+    <main class="container">
+        <div class="options-container">
+            <button class="option-btn" onclick="selectOption(event)">Option 1</button>
+            <button class="option-btn" onclick="selectOption(event)">Option 2</button>
+            <button class="option-btn" onclick="selectOption(event)">Option 3</button>
+            <button class="option-btn" onclick="selectOption(event)">Option 4</button>
+        </div>
+        <div class="confirm-container">
+            <button class="confirm-btn" id="confirmButton" onclick="confirmSelection()">Confirm</button>
+        </div>
+    </main>
+
+    <!-- Include the background.js script for animated background -->
+    <script src="{% static 'js/background.js' %}"></script>
+    <script>
+        function enableConfirmButton() {
+            const confirmButton = document.getElementById('confirmButton');
+            confirmButton.classList.add('enabled');
+        }
+
+        function confirmSelection() {
+            // Implement the logic for confirming the selection
+            console.log('Selection confirmed');
+            // Remove the active class from all option buttons
+            const optionButtons = document.querySelectorAll('.option-btn');
+            optionButtons.forEach(button => button.classList.remove('active'));
+            // Redirect or perform actions based on the confirmation
+        }
+
+        function selectOption(event) {
+            // Remove active class from all option buttons
+            const optionButtons = document.querySelectorAll('.option-btn');
+            optionButtons.forEach(button => button.classList.remove('active'));
+
+            // Add active class to the clicked button
+            event.target.classList.add('active');
+
+            // Enable the confirm button after an option is selected
+            enableConfirmButton();
+        }
+    </script>
+</body>
+</html> 

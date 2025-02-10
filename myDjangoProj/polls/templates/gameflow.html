@@ -100,7 +100,83 @@
         .action-btn[style*="opacity: 0.5"], .option-btn[style*="opacity: 0.5"], .sell-btn[style*="opacity: 0.5"] {
             pointer-events: none; /* Disable hover effect */
         }
+
+        /* Remove any existing background styles */
+        body {
+            background: none;
+        }
+
+        .option-btn {
+            width: 400px; /* Set a fixed width */
+            height: 60px; /* Set a fixed height */
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            text-align: center; /* Center text */
+            line-height: 1.5; /* Adjust line height for vertical centering */
+        }
+
+        .option-btn:hover {
+            box-shadow: 0 0 10px #8A00C4, 0 0 20px #8A00C4, 0 0 30px #8A00C4;
+            background-color: #4B0082; /* Indigo color for hover */
+        }
+
+        .option-btn.active {
+            box-shadow: 0 0 10px #8A00C4, 0 0 20px #8A00C4, 0 0 30px #8A00C4;
+            background-color: #4B0082; /* Indigo color for active state */
+        }
+
+        .confirm-btn {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: orange;
+            color: white;
+            transition: background-color 0.3s ease;
+            opacity: 0.5; /* Initially disabled */
+            pointer-events: none; /* Initially disabled */
+        }
+
+        .confirm-btn.enabled {
+            opacity: 1;
+            pointer-events: auto; /* Enable when conditions are met */
+        }
+
+        .confirm-btn:hover {
+            background-color: #e69500; /* Darker orange on hover */
+        }
+
+        .confirm-container {
+            text-align: right;
+            margin-top: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Progress Bar Styles */
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .progress-segment {
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
     </style>
+    <!-- Include Three.js and Vanta.js -->
+    <script src="{% static 'js/three.r134.min.js' %}"></script>
+    <script src="{% static 'js/vanta.net.min.js' %}"></script>
 </head>
 <body>
     <video id="background-video" autoplay muted loop>
@@ -179,10 +255,10 @@
             </div>
 
             <div class="options">
-                <button class="option-btn" onclick="selectOption()">Option 1</button>
-                <button class="option-btn" onclick="selectOption()">Option 2</button>
-                <button class="option-btn" onclick="selectOption()">Option 3</button>
-                <button class="option-btn" onclick="selectOption()">Option 4</button>
+                <button class="option-btn" onclick="selectOption(event)">Option 1</button>
+                <button class="option-btn" onclick="selectOption(event)">Option 2</button>
+                <button class="option-btn" onclick="selectOption(event)">Option 3</button>
+                <button class="option-btn" onclick="selectOption(event)">Option 4</button>
                 <div class="reload-container">
                     <button class="reload-btn" onclick="window.location.reload()">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -198,6 +274,9 @@
             <div class="sell-button-container">
                 <button class="sell-btn" onclick="showSellModal()">Sell Company</button>
             </div>
+        </div>
+        <div class="confirm-container">
+            <button class="confirm-btn" id="confirmButton" onclick="confirmSelection()">Confirm</button>
         </div>
     </div>
 
@@ -232,6 +311,8 @@
         </div>
     </div>
 
+    <!-- Include the background.js script -->
+    <script src="{% static 'js/background.js' %}"></script>
     <script src="{% static 'js/gameflow.js' %}"></script>
 
     <!-- Adjusted image container position -->
@@ -307,6 +388,32 @@
                 investorNames.push(investor.value);
             });
             alert('Negotiating with Investors: ' + investorNames.join(', '));
+        }
+
+        function enableConfirmButton() {
+            const confirmButton = document.getElementById('confirmButton');
+            confirmButton.classList.add('enabled');
+        }
+
+        function confirmSelection() {
+            // Implement the logic for confirming the selection
+            console.log('Selection confirmed');
+            // Remove the active class from all option buttons
+            const optionButtons = document.querySelectorAll('.option-btn');
+            optionButtons.forEach(button => button.classList.remove('active'));
+            // Redirect or perform actions based on the confirmation
+        }
+
+        function selectOption(event) {
+            // Remove active class from all option buttons
+            const optionButtons = document.querySelectorAll('.option-btn');
+            optionButtons.forEach(button => button.classList.remove('active'));
+
+            // Add active class to the clicked button
+            event.target.classList.add('active');
+
+            // Enable the confirm button after an option is selected
+            enableConfirmButton();
         }
     </script>
 </body>
