@@ -58,34 +58,46 @@ function updateRevenueDisplay() {
 
 function updateReputationDisplay() {
     const fill = document.getElementById('reputationFill');
+    const status = document.getElementById('reputationStatus');
     const text = document.getElementById('reputationText');
     
     fill.style.width = `${reputation}%`;
     
+    // Remove all status classes first
+    status.classList.remove('status-excellent', 'status-good', 'status-fair', 'status-poor', 'status-critical');
+    
     if (reputation >= 80) {
         fill.style.background = 'linear-gradient(90deg, #22c55e, #16a34a)';
         text.textContent = 'Excellent';
+        status.classList.add('status-excellent');
     } else if (reputation >= 60) {
         fill.style.background = 'linear-gradient(90deg, #22c55e, #10b981)';
         text.textContent = 'Good';
+        status.classList.add('status-good');
     } else if (reputation >= 40) {
         fill.style.background = 'linear-gradient(90deg, #eab308, #f59e0b)';
         text.textContent = 'Fair';
+        status.classList.add('status-fair');
     } else if (reputation >= 20) {
         fill.style.background = 'linear-gradient(90deg, #f97316, #ef4444)';
         text.textContent = 'Poor';
+        status.classList.add('status-poor');
     } else {
         fill.style.background = 'linear-gradient(90deg, #dc2626, #991b1b)';
         text.textContent = 'Critical';
+        status.classList.add('status-critical');
     }
 }
 
 function updateProgressDisplay() {
-    const fill = document.getElementById('progressFill');
-    const text = document.getElementById('progressText');
-    
-    fill.style.width = `${progress}%`;
-    text.textContent = `${progress}%`;
+    const segments = document.querySelectorAll('.progress-segment');
+    segments.forEach((segment, index) => {
+        if (index < currentSegment) {
+            segment.classList.add('active');
+        } else {
+            segment.classList.remove('active');
+        }
+    });
 }
 
 // Investor Functions
@@ -468,6 +480,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update the company name in the UI
     updateCompanyName();
+
+    // Initialize progress bar
+    currentSegment = 0;
+    updateProgressDisplay();
 });
 
 // Add this function back
@@ -737,20 +753,23 @@ function updateCompanyName() {
 }
 
 function confirmSelection() {
-    // Implement the logic for confirming the selection
-    console.log('Selection confirmed');
-    // Remove the active class from all option buttons
-    const optionButtons = document.querySelectorAll('.option-btn');
-    optionButtons.forEach(button => button.classList.remove('active'));
-
-    // Update the progress bar
-    if (currentSegment < 9) {
+    const selectedOption = document.querySelector('.option-btn.active');
+    
+    if (selectedOption && currentSegment < 9) {
+        // Increment segment and update display
         currentSegment++;
-        document.getElementById(`segment${currentSegment}`).classList.add('active');
         updateProgressDisplay();
+        
+        // Reset option selection
+        selectedOption.classList.remove('active');
+        
+        // Disable confirm button
+        const confirmButton = document.getElementById('confirmButton');
+        if (confirmButton) {
+            confirmButton.classList.remove('enabled');
+            confirmButton.disabled = true;
+        }
     }
-
-    // Redirect or perform actions based on the confirmation
 }
 
 function increaseProgress() {

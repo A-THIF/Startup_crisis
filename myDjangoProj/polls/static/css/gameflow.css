@@ -82,21 +82,26 @@ body::before {
 }
 
 .option-btn {
-    width: 400px; /* Set a fixed width */
-    height: 60px; /* Set a fixed height */
+    width: 400px;
+    height: 60px;
     padding: 10px 20px;
     font-size: 1.2em;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    text-align: center; /* Center text */
-    line-height: 1.5; /* Adjust line height for vertical centering */
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .option-btn:hover {
-    box-shadow: 0 0 10px #8A00C4, 0 0 20px #8A00C4, 0 0 30px #8A00C4;
-    background-color: #4B0082; /* Indigo color for hover */
+    background: rgba(138, 0, 196, 0.4);
+    box-shadow: 0 0 15px #8A00C4, 0 0 25px rgba(138, 0, 196, 0.8);
+    border: 1px solid rgba(138, 0, 196, 0.6);
 }
 
 .option-btn.active {
@@ -300,38 +305,76 @@ body::before {
 }
 
 .reputation-display {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
     color: white;
     font-family: 'Orbitron', sans-serif !important;
     letter-spacing: 1px;
-    font-size: 1.25rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1rem;
     backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.8rem;
+    min-width: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.reputation-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex: 1;
 }
 
 .reputation-meter {
-    width: 100px;
+    flex: 1;
     height: 8px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(20, 20, 20, 0.8);  /* Dark background */
     border-radius: 4px;
     overflow: hidden;
+    position: relative;
+    min-width: 180px;
+    display: flex;
+    gap: 2px;
 }
 
-.reputation-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #22c55e, #10b981);
-    width: 70%;
-    transition: width 0.3s ease;
+.progress-segment {
+    flex: 1;
+    background: rgba(20, 20, 20, 0.8);  /* Dark background */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.progress-segment.active {
+    background: linear-gradient(90deg, #FFD700, #FFA500);  /* Golden yellow gradient */
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);  /* Golden glow */
+    animation: glowPulse 1.5s infinite;
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+    50% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
 }
 
 #reputationText {
-    font-size: 1rem;
-    min-width: 80px;
+    font-size: 0.9rem;
+    min-width: 60px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+/* Remove the status indicator since it's not in the reference image */
+.reputation-status {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.status-indicator {
+    display: none;
 }
 
 /* Modal Styles */
@@ -678,26 +721,48 @@ textarea,
     color: #4CAF50;
 }
 
-.reputation-display {
-    margin-top: 10px;
-    font-family: 'Orbitron', sans-serif;
+/* Progress bar container */
+.progress-display {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
     color: white;
-    text-align: center;
+    font-family: 'Orbitron', sans-serif !important;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-width: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    right: 3rem;
+    top: 11.5rem;  /* Position it below sell button */
 }
 
-.reputation-meter {
-    width: 100%;
-    max-width: 300px;
-    background-color: #ddd;
-    border-radius: 5px;
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex: 1;
+}
+
+.progress-meter {
+    flex: 1;
+    height: 8px;
+    background: rgba(40, 40, 40, 0.8);
+    border-radius: 4px;
     overflow: hidden;
-    height: 10px;
-    margin: 5px auto;
+    position: relative;
+    min-width: 180px;
 }
 
-.reputation-fill {
+.progress-fill {
     height: 100%;
-    width: 0%;
-    background-color: #4CAF50;
+    background: linear-gradient(90deg, #60a5fa, #3b82f6);  /* Blue gradient for energy-like appearance */
+    width: 0%;  /* Start at 0% */
     transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);  /* Glowing effect */
 }
