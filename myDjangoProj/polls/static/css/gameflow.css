@@ -131,6 +131,22 @@ body::before {
     background-color: #e69500; /* Darker orange on hover */
 }
 
+.continue-btn {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Green color */
+    color: white;
+    transition: background-color 0.3s ease;
+    margin-right: 10px; /* Space between buttons */
+}
+
+.continue-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
 .confirm-container {
     text-align: right;
     margin-top: 20px;
@@ -329,34 +345,30 @@ body::before {
 }
 
 .reputation-meter {
-    flex: 1;
-    height: 8px;
-    background: rgba(20, 20, 20, 0.8);  /* Dark background */
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
-    min-width: 180px;
     display: flex;
-    gap: 2px;
+    width: 100%;
+    max-width: 300px;
+    background-color: #333; /* Dark background */
+    border-radius: 5px;
+    overflow: hidden;
+    height: 10px;
+    margin: 5px auto;
 }
 
 .progress-segment {
     flex: 1;
-    background: rgba(20, 20, 20, 0.8);  /* Dark background */
-    border-radius: 2px;
-    transition: all 0.3s ease;
+    height: 100%;
+    background-color: #000; /* Start with black */
+    transition: background-color 0.3s ease;
+    border-right: 1px solid #333; /* Divider between segments */
+}
+
+.progress-segment:last-child {
+    border-right: none; /* Remove the last border */
 }
 
 .progress-segment.active {
-    background: linear-gradient(90deg, #FFD700, #FFA500);  /* Golden yellow gradient */
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);  /* Golden glow */
-    animation: glowPulse 1.5s infinite;
-}
-
-@keyframes glowPulse {
-    0% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
-    50% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
-    100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+    background-color: #FFD700; /* Golden yellow */
 }
 
 #reputationText {
@@ -723,46 +735,30 @@ textarea,
 
 /* Progress bar container */
 .progress-display {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 0.5rem 1rem;
-    border-radius: 0.3rem;
+    margin-top: 20px;
+    font-family: 'Orbitron', sans-serif;
     color: white;
-    font-family: 'Orbitron', sans-serif !important;
-    letter-spacing: 1px;
-    font-size: 1rem;
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    min-width: 300px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    position: absolute;
-    right: 3rem;
-    top: 11.5rem;  /* Position it below sell button */
-}
-
-.progress-container {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    flex: 1;
+    text-align: center;
 }
 
 .progress-meter {
-    flex: 1;
-    height: 8px;
-    background: rgba(40, 40, 40, 0.8);
-    border-radius: 4px;
+    width: 100%;
+    max-width: 300px;
+    background-color: #333; /* Dark background */
+    border-radius: 5px;
     overflow: hidden;
-    position: relative;
-    min-width: 180px;
+    height: 10px;
+    margin: 5px auto;
+    display: flex;
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #60a5fa, #3b82f6);  /* Blue gradient for energy-like appearance */
-    width: 0%;  /* Start at 0% */
+    width: 0%; /* Start with 0% progress */
+    background-color: #000; /* Black color */
     transition: width 0.3s ease;
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);  /* Glowing effect */
+}
+
+.progress-segment.active {
+    background-color: #FFD700; /* Golden yellow */
 }

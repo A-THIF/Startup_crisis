@@ -281,6 +281,7 @@
             </div>
         </div>
         <div class="confirm-container">
+            <button class="continue-btn" id="continueButton" onclick="continueAction()">Continue</button>
             <button class="confirm-btn" id="confirmButton" onclick="confirmSelection()">Confirm</button>
         </div>
     </div>
@@ -325,21 +326,21 @@
         <img id="levelImage" src="{% static 'images/level1.png' %}" alt="Level" style="width: 100%; height: 100%; object-fit: contain;">
     </div>
 
-    <div class="progress-display">
+    <!-- Progress Bar -->
+    <div class="progress-display" id="progressDisplay">
         <span>Progress:</span>
-        <div class="progress-container">
-            <div class="progress-meter">
-                <div class="progress-segment" id="segment1"></div>
-                <div class="progress-segment" id="segment2"></div>
-                <div class="progress-segment" id="segment3"></div>
-                <div class="progress-segment" id="segment4"></div>
-                <div class="progress-segment" id="segment5"></div>
-                <div class="progress-segment" id="segment6"></div>
-                <div class="progress-segment" id="segment7"></div>
-                <div class="progress-segment" id="segment8"></div>
-                <div class="progress-segment" id="segment9"></div>
-            </div>
+        <div class="progress-meter">
+            <div class="progress-segment" id="segment1"></div>
+            <div class="progress-segment" id="segment2"></div>
+            <div class="progress-segment" id="segment3"></div>
+            <div class="progress-segment" id="segment4"></div>
+            <div class="progress-segment" id="segment5"></div>
+            <div class="progress-segment" id="segment6"></div>
+            <div class="progress-segment" id="segment7"></div>
+            <div class="progress-segment" id="segment8"></div>
+            <div class="progress-segment" id="segment9"></div>
         </div>
+        <span id="progressText">0%</span>
     </div>
 
     <script>

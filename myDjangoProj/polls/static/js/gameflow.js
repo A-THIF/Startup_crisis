@@ -98,6 +98,8 @@ function updateProgressDisplay() {
             segment.classList.remove('active');
         }
     });
+    const text = document.getElementById('progressText');
+    text.textContent = `${(currentSegment / 9) * 100}%`;
 }
 
 // Investor Functions
@@ -753,22 +755,9 @@ function updateCompanyName() {
 }
 
 function confirmSelection() {
-    const selectedOption = document.querySelector('.option-btn.active');
-    
-    if (selectedOption && currentSegment < 9) {
-        // Increment segment and update display
+    if (currentSegment < 9) {
         currentSegment++;
         updateProgressDisplay();
-        
-        // Reset option selection
-        selectedOption.classList.remove('active');
-        
-        // Disable confirm button
-        const confirmButton = document.getElementById('confirmButton');
-        if (confirmButton) {
-            confirmButton.classList.remove('enabled');
-            confirmButton.disabled = true;
-        }
     }
 }
 
@@ -777,4 +766,9 @@ function increaseProgress() {
         progress += 10; // Increase progress by 10% each time
         updateProgressDisplay();
     }
+}
+
+function continueAction() {
+    // Implement the logic for the continue action
+    console.log('Continue action triggered');
 }
