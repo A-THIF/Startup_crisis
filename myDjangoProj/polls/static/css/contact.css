@@ -16,6 +16,7 @@ body {
     height: 100vh;
 }
 
+
 body::before {
     content: '';
     position: absolute;
@@ -348,4 +349,14 @@ body::before {
   form > input[type="submit"]:hover {
     background-color: #555;
   }
+
+ #vanta-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    z-index: -1; /* Behind content */
+}
+
   

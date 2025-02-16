@@ -8,26 +8,23 @@
     <title>Business Type Selector</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/selection.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 </head>
 <body>
-    <video class="video-background" autoplay muted loop>
-    
-        Your browser does not support the video tag.
-    </video>    
+    <div id="vanta-background"></div>
 
     <!-- Main Selection Page -->
     <div id="mainPage" class="container">
         <h1>Choose the business type</h1>
         <div class="business-grid">
-            <div class="business-card" onclick="selectBusiness('technology')">
+            <div class="business-card" onclick="handleBusinessSelection('technology')">
                 <div class="business-card-content">
                     <span>⚙️</span>
                     <span>TECHNOLOGY</span>
-                
-          
                 </div>
             </div>
-            <div class="business-card" onclick="selectBusiness('entertainment')">
+            <div class="business-card" onclick="handleBusinessSelection('entertainment')">
                 <div class="business-card-content">
                     <span>🎵</span>
                     <span>ENTERTAINMENT</span>
@@ -63,14 +60,101 @@
         </div>
     </div>
 
-    
     <script src="{% static 'js/selection.js' %}"></script>
+    <script>
+    let vantaEffect = VANTA.NET({
+        el: "#vanta-background",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 100.00,
+        minWidth: 100.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x9c27b0,
+        backgroundColor: 0x0,
+        points: 15.00,
+        maxDistance: 25.00,
+        spacing: 17.00
+    });
+
+    // Handle window resize
+    function updateVantaEffect() {
+        if (vantaEffect) {
+            vantaEffect.destroy();
+        }
+        vantaEffect = VANTA.NET({
+            el: "#vanta-background",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 100.00,
+            minWidth: 100.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x9c27b0,
+            backgroundColor: 0x0,
+            points: 15.00,
+            maxDistance: 25.00,
+            spacing: 17.00
+        });
+    }
+
+    window.addEventListener('resize', updateVantaEffect);
+
+    let selectedBusinessType = '';
+
+    // Handle business type selection
+    function handleBusinessSelection(type) {
+        selectedBusinessType = type;
+        
+        // Remove selected class from all cards
+        document.querySelectorAll('.business-card').forEach(card => {
+            card.classList.remove('selected');
+        });
+        
+        // Add selected class to clicked card
+        event.currentTarget.classList.add('selected');
+        
+        // Enable input if it has value
+        validateInput();
+    }
+
+    function validateInput() {
+        const input = document.getElementById('companyName');
+        const button = document.getElementById('startButton');
+        // Only enable button if both business type is selected and company name is entered
+        button.disabled = !input.value.trim() || !selectedBusinessType;
+    }
+
+    function startGame() {
+        const companyName = document.getElementById('companyName').value.trim();
+        if (companyName && selectedBusinessType) {
+            const mainPage = document.getElementById('mainPage');
+            const techPage = document.getElementById('technologyPage');
+            const entPage = document.getElementById('entertainmentPage');
+
+            mainPage.style.opacity = '0';
+            mainPage.style.visibility = 'hidden';
+
+            setTimeout(() => {
+                mainPage.style.display = 'none';
+                if (selectedBusinessType === 'technology') {
+                    techPage.style.display = 'block';
+                    setTimeout(() => {
+                        techPage.style.opacity = '1';
+                        techPage.style.visibility = 'visible';
+                    }, 50);
+                } else if (selectedBusinessType === 'entertainment') {
+                    entPage.style.display = 'block';
+                    setTimeout(() => {
+                        entPage.style.opacity = '1';
+                        entPage.style.visibility = 'visible';
+                    }, 50);
+                }
+            }, 300);
+        }
+    }
+    </script>
 </body>
 </html>
-
-    
-   
-
-    <!-- Entertainment Page -->
-    
-

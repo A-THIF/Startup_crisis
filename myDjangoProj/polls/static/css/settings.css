@@ -381,6 +381,17 @@ body::before {
     text-decoration: none; /* Removes underline */
 }
 
+
+#vanta-bg {
+    position: fixed; /* Stays in place when scrolling */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Sends it behind other content */
+}
+
+
 .sign-out-btn:hover {
     background-color: #e53935;
 }

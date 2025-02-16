@@ -110,3 +110,5 @@ document.querySelectorAll('.continue-button').forEach(button => {
             }, index * 100);
         });
     }
+
+    

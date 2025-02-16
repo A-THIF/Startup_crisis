@@ -16,6 +16,15 @@ body {
     height: 100vh;
 }
 
+#vanta-bg {
+    position: fixed; /* Stays in place when scrolling */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Sends it behind other content */
+}
+
 body::before {
     content: '';
     position: absolute;
