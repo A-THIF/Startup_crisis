@@ -1,4 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Links to User
+    full_name = models.CharField(max_length=255)                # e.g., "Aarav Sharma"
+    date_of_birth = models.DateField()                          # e.g., "2005-03-16"
+
+    def __str__(self):
+        return self.full_name
 
 class Component(models.Model):
     name = models.CharField(max_length=255)  # Box for item name, e.g., "Sword"
