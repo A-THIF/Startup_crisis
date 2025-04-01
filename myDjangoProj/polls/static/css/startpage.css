@@ -23,10 +23,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.5)
-    );
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
     pointer-events: none;
     z-index: 0;
 }
@@ -35,11 +32,6 @@ body::before {
     position: relative;
     z-index: 1;
 }
-
-/* Duplicate body style commented out */
-/* body {
-    filter: brightness(1.1) contrast(1.1);
-} */
 
 .header {
     position: fixed;
@@ -59,21 +51,12 @@ body::before {
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(157, 40, 24, 1) 20%,
-        rgba(157, 40, 24, 1) 80%,
-        transparent 100%
-    );
-    z-index: 1;
+    background: linear-gradient(90deg, transparent 0%, rgba(157, 40, 24, 1) 20%, rgba(157, 40, 24, 1) 80%, transparent 100%);
 }
 
 .top-bar {
-    position: relative;
     padding: 15px 0 25px 0;
     background-color: transparent;
-    flex-grow: 1;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -81,20 +64,22 @@ body::before {
     justify-content: center;
 }
 
-.top-bar h1 {
+.header-title {
     color: white;
-    opacity: 1;
     font-size: 1.8em;
     margin: 0;
     white-space: nowrap;
     letter-spacing: 1px;
-    text-align: center;
     font-family: "Rubik", serif;
     font-weight: 900;
-    font-optical-sizing: auto;
     font-style: italic;
     padding-top: 30px;
     margin-bottom: 20px;
+}
+
+.header-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 .container {
@@ -105,6 +90,11 @@ body::before {
     text-align: center;
     height: 100vh;
     position: relative;
+}
+
+.quote p {
+    font-size: 1.5em;
+    margin: 10px 0;
 }
 
 #burger-toggle {
@@ -147,6 +137,8 @@ body::before {
     z-index: 2100;
     transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
     padding-top: 60px;
+    visibility: hidden;
+    opacity: 0;
 }
 
 #burger-toggle:checked ~ .burger-container .burger-line:nth-child(1) {
@@ -159,6 +151,18 @@ body::before {
 
 #burger-toggle:checked ~ .burger-container .burger-line:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
+}
+
+#burger-toggle:checked ~ .side-menu {
+    right: 0;
+    visibility: visible;
+    opacity: 1;
+}
+
+#burger-toggle:checked ~ .overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .play-button {
@@ -192,10 +196,6 @@ body::before {
 }
 
 .new-page {
-    /* background: linear-gradient(
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5)
-    );*/
     height: 100vh;
     color: white;
     display: flex;
@@ -203,86 +203,153 @@ body::before {
     align-items: center;
     flex-direction: column;
     padding: 20px;
+    padding-top: 180px;
 }
 
-.new-page .content {
+/* Card Flip Styles */
+.card-container {
+    perspective: 1000px;
+    width: 320px;
+    height: 650px;
+    position: relative;
+    margin: auto;
+}
+
+.card {
     width: 100%;
-    max-width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 50px;
+    height: 100%;
+    position: absolute;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
 }
 
-.new-page .text {
-    flex: 1;
-    text-align: left;
+.card.flipped {
+    transform: rotateY(180deg);
 }
 
-.new-page .buttons {
-    flex: 1;
+.card-side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.new-page button {
+.card-side.back {
+    transform: rotateY(180deg);
+}
+
+.card-side h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-family: 'Stick', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.card-side input {
+    width: 85%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 0.9em;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.card-side input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.card-side input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(157, 40, 24, 0.5);
+}
+
+.auth-button {
+    width: 85%;
+    padding: 12px;
+    margin: 15px 0;
     background-color: rgba(157, 40, 24, 1);
     color: white;
     border: none;
-    padding: 15px 30px;
-    font-size: 1.5em;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
+    border-radius: 8px;
+    font-size: 1em;
     font-family: 'Stick', sans-serif;
-    letter-spacing: 2px;
     text-transform: uppercase;
-    width: 311.7px;
-    height: 68px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
-.new-page button:hover {
+.auth-button:hover {
     background-color: rgba(120, 30, 20, 1);
+    box-shadow: 0 0 15px rgba(157, 40, 24, 0.7);
 }
 
-.new-page button:active {
+.auth-button:active {
     transform: scale(0.95);
 }
 
-.quote {
-    margin-top: 50px;
-    padding: 20px;
+.cross-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1em;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
 }
 
-.quote p {
-    font-size: 1.8em;
-    margin: 20px 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    line-height: 1.4;
+.cross-button:hover {
+    background-color: rgba(200, 0, 0, 0.8);
 }
 
-.page-transition {
-    transition: opacity 0.3s ease-in-out;
+.flip-text {
+    font-size: 0.9em;
+    margin-top: 15px;
+    text-align: center;
 }
 
-.fade-out {
-    opacity: 0;
+.signup-flip {
+    margin-top: 10px; /* Keeps it slightly closer to Sign Up button */
 }
 
-.fade-in {
-    opacity: 1;
+.flip-link {
+    color: rgba(157, 40, 24, 1);
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: 'Stick', sans-serif;
+    transition: color 0.3s;
 }
 
-.new-page .text h1 {
-    font-size: 3em;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+.flip-link:hover {
+    color: rgba(120, 30, 20, 1);
+}
+
+.error {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 8px;
 }
 
 .overlay {
@@ -310,8 +377,6 @@ body::before {
     transition: all 0.3s ease;
     padding: 40px 20px;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-    visibility: hidden;
-    opacity: 0;
 }
 
 .side-menu.active {
@@ -360,117 +425,40 @@ body::before {
 }
 
 @media (max-width: 768px) {
-    .side-menu {
-        width: 80%;
+    .card-container {
+        width: 280px;
+        height: 600px;
     }
-    .header h1 {
+    .card-side h2 {
+        font-size: 1.8em;
+    }
+    .card-side input {
+        width: 90%;
+        padding: 10px;
+        font-size: 0.85em;
+    }
+    .auth-button {
+        width: 90%;
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .cross-button {
+        width: 25px;
+        height: 25px;
+        font-size: 0.9em;
+    }
+    .flip-text {
+        font-size: 0.8em;
+    }
+    .signup-flip {
+        margin-top: 8px;
+    }
+    .flip-link {
+        font-size: 0.8em;
+    }
+    .quote p {
         font-size: 1.2em;
     }
-    .play-button {
-        font-size: 1em;
-        width: 250px;
-        height: 50px;
-    }
-}
-
-#burger-toggle:checked ~ .side-menu {
-    right: 0;
-    visibility: visible;
-    opacity: 1;
-}
-
-#burger-toggle:checked ~ .overlay {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-.menu {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-    margin-top: 10px;
-}
-.main{
-	width: 350px;
-	height: 500px;
-	background: red;
-	overflow: hidden;
-	background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover;
-	border-radius: 10px;
-	box-shadow: 5px 20px 50px #000;
-	margin-top: 160px;
-}
-#chk{
-	display: none;
-}
-.signup{
-	position: relative;
-	width:100%;
-	height: 100%;
-}
-label{
-	color: #fff;
-	font-size: 2.3em;
-	justify-content: center;
-	display: flex;
-	margin: 50px;
-	font-weight: bold;
-	cursor: pointer;
-	transition: .5s ease-in-out;
-}
-input{
-	width: 60%;
-	height: 10px;
-	background: #e0dede;
-	justify-content: center;
-	display: flex;
-	margin: 20px auto;
-	padding: 12px;
-	border: none;
-	outline: none;
-	border-radius: 5px;
-}
-button{
-	width: 60%;
-	height: 40px;
-	margin: 10px auto;
-	justify-content: center;
-	display: block;
-	color: #fff;
-	background: #573b8a;
-	font-size: 1em;
-	font-weight: bold;
-	margin-top: 0px;
-	outline: none;
-	border: none;
-	border-radius: 5px;
-	transition: .2s ease-in;
-	cursor: pointer;
-}
-button:hover{
-	background: #6d44b8;
-}
-.login{
-	height: 460px;
-	background: #eee;
-	border-radius: 60% / 10%;
-	transform: translateY(-180px);
-	transition: .8s ease-in-out;
-}
-.login label{
-	color: #573b8a;
-	transform: scale(.6);
-}
-
-#chk:checked ~ .login{
-	transform: translateY(-500px);
-}
-#chk:checked ~ .login label{
-	transform: scale(1);	
-}
-#chk:checked ~ .signup label{
-	transform: scale(.6);
 }
 
 #background-video {
@@ -492,3 +480,18 @@ a.button-link:hover {
     color: lightgray;
 }
 
+.page-transition {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.hidden {
+    display: none;
+}

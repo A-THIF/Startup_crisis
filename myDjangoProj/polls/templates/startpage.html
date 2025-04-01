@@ -18,8 +18,8 @@
     </video>    
     <header class="header">
         <div class="top-bar">
-            <a href="{% url 'startpage' %}" style="text-decoration: none; color: inherit;">
-                <h1 style="font-family: 'Pixelify Sans', sans-serif; font-weight: 500;">Startup Crisis Management</h1>
+            <a href="{% url 'startpage' %}" class="header-link">
+                <h1 class="header-title">Startup Crisis Management</h1>
             </a>
         </div>
         <div class="menu">
@@ -36,44 +36,43 @@
             <p>In the heart of the crisis, only your decisions matter.</p>
             <p>The future is unwritten.</p>
         </div>
-        <button class="play-button" onclick="document.querySelector('.new-page').style.display='block'; this.style.display='none';">Play now</button>
+        <button class="play-button" onclick="document.querySelector('.new-page').classList.remove('hidden'); this.classList.add('hidden');">Play now</button>
     </main>
-    <section class="new-page" style="display: none;" aria-label="Auth section">
-        <div class="content">
-            <div class="text">
-                <h1>Get Out and Stretch Your Imagination</h1>
-            </div>
-            <div class="main">  	
-                <input type="checkbox" id="chk" aria-hidden="true">
-        
-                <div class="signup">
-                    <form method="post" action="{% url 'signup' %}">
+    <section class="new-page hidden" aria-label="Auth section">
+        <div class="card-container">
+            <div class="card"> <!-- Login appears first -->
+                <!-- Front Side (Login) -->
+                <div class="card-side front">
+                    <h2 class="auth-title">Login</h2>
+                    <form method="post" action="{% url 'login' %}">
                         {% csrf_token %}
-                        <label for="chk" aria-hidden="true">Sign up</label>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="password" name="pswd" placeholder="Password" required>
+                        <button type="submit" class="auth-button">Login</button>
+                        {% if login_error %}
+                            <p class="error">{{ login_error }}</p>
+                        {% endif %}
+                    </form>
+                    <p class="flip-text">Don’t have an account? <span class="flip-link" onclick="flipCard()">Signup</span></p>
+                </div>
+                <!-- Back Side (Sign Up) -->
+                <div class="card-side back">
+                    <h2 class="auth-title">Sign Up</h2>
+                    <button class="cross-button" onclick="flipCard()">✕</button> <!-- Added cross button -->
+                    <form method="post" action="{% url 'signup' %}" id="signup-form">
+                        {% csrf_token %}
                         <input type="text" name="username" placeholder="User name" required>
                         <input type="email" name="email" placeholder="Email" required>
                         <input type="text" name="full_name" placeholder="Full Name" required>
                         <input type="date" name="date_of_birth" placeholder="Date of Birth" required>
                         <input type="password" name="password" placeholder="Password" required>
                         <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-                        <button type="submit">Sign up</button>
+                        <button type="submit" class="auth-button">Sign Up</button>
                         {% if signup_error %}
-                            <p style="color: red;">{{ signup_error }}</p>
+                            <p class="error">{{ signup_error }}</p>
                         {% endif %}
                     </form>
-                </div>
-        
-                <div class="login">
-                    <form method="post" action="{% url 'login' %}">
-                        {% csrf_token %}
-                        <label for="chk" aria-hidden="true">Login</label>
-                        <input type="email" name="email" placeholder="Email" required>
-                        <input type="password" name="pswd" placeholder="Password" required>
-                        <button type="submit" class="login-button">Login</button>
-                        {% if login_error %}
-                            <p style="color: red;">{{ login_error }}</p>
-                        {% endif %}
-                    </form>
+                    <p class="flip-text signup-flip">Already have an account? <span class="flip-link" onclick="flipCard()">Login</span></p>
                 </div>
             </div>
         </div>
